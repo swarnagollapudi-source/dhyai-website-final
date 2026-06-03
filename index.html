@@ -652,81 +652,418 @@
                     
                     <h3 class="heading-font" style="margin-top: 3rem;">Hospitality, interiors, and private commissions</h3>
                     <p>Surfaces drawn for a defined room or programme — a hotel suite, a restaurant table, a residential bedroom, a private cycle of gifting.</p>
-                    <p>The brief is set with the architect, owner, or host.</p>
-                </div>
-                
-                <div style="background-color: var(--bg-dark); padding: 48px; border: 1px solid var(--divider);">
-                    <h3 class="heading-font" style="text-align: center; margin-bottom: 2rem;">The arc of commissions</h3>
-                    <div style="text-align: center;">
-                        <p>Brief</p>
-                        <p style="color: var(--accent-gold); margin: 0.5rem 0;">↓</p>
-                        <p>Drawing and development — five to six weeks</p>
-                        <p style="color: var(--accent-gold); margin: 0.5rem 0;">↓</p>
-                        <p>Prototype and revision — four to six weeks</p>
-                        <p style="color: var(--accent-gold); margin: 0.5rem 0;">↓</p>
-                        <p>Production — four to six weeks</p>
-                        <p style="color: var(--accent-gold); margin: 0.5rem 0;">↓</p>
-                        <p>Delivery</p>
-                    </div>
-                    <p style="text-align: center; color: var(--text-dim); margin-top: 3rem;">
-                        Domestic and international projects.<br>Pricing issued against confirmed brief.<br>Lead times vary by scope.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DHYAI</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Petrona:ital,wght@0,400;1,300;1,400&family=Source+Sans+3:wght@400&display=swap" rel="stylesheet">
 
-    <div id="contact" class="page-view" data-bg="var(--bg-dark)">
-        <section class="vh-100">
-            <div class="atm-ground fade-right" style="background-image: url('dhyai-jaali-shadow-grid-warm.png'); opacity: 0.4; background-position: left center;"></div>
-            <div class="atm-overlay" style="background: linear-gradient(to right, rgba(18,16,11,0.2) 0%, rgba(18,16,11,0.9) 60%);"></div>
+    <style>
+        /* ==================================================
+           GLOBAL COLOR & ATMOSPHERE SYSTEM
+           ================================================== */
+        :root {
+            --bg-dark: #100D08;
+            --bg-mid: #1A120C;
+            --bg-warm: #1A120C;
+            --bg-beige: #C9B88F;
             
-            <div class="content-layer grid-2">
-                <div>
-                    <h2 class="heading-font">Enquiry</h2>
-                    <p style="margin-bottom: 3rem;">To begin a conversation.<br>Write to the studio.</p>
-                    
-                    <div style="margin-top: 2rem;">
-                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 0.5rem;">Dhyai Studio</p>
-                        <p>Devanahalli, Bengaluru</p>
-                        <br>
-                        <p>contact@dhyai.studio<br>WhatsApp +91 83685 44393</p>
-                        <p style="margin-top: 1rem;">dhyai.studio</p>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 2rem;">
-                    <form onsubmit="event.preventDefault(); alert('Message sent quietly.');">
-                        <input type="text" placeholder="Name" required>
-                        <input type="email" placeholder="Email" required>
-                        <input type="text" placeholder="Subject">
-                        <textarea rows="4" placeholder="Message" required></textarea>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </div>
+            --text-ivory: #D9CBAE;
+            --text-muted: rgba(217,203,174,0.72);
+            --accent-gold: #BE8233;
+            
+            --nav-height-desk: 92px;
+            --nav-height-mob: 72px;
+            --max-text: 620px;
+        }
 
-    <script>
-        const pages = document.querySelectorAll('.page-view');
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html, body {
+            width: 100%;
+            background-color: var(--bg-dark);
+            color: var(--text-ivory);
+            font-family: 'Petrona', serif;
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 1.45;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        @media (min-width: 768px) {
+            html, body { font-size: 20px; line-height: 1.35; }
+        }
+
+        /* ==================================================
+           TYPOGRAPHY
+           ================================================== */
+        h1, h2, h3, h4, .heading-font {
+            font-family: 'Marcellus', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: var(--text-ivory);
+        }
+
+        h1 { font-size: 34px; margin-bottom: 1.5rem; }
+        h2, h3 { font-size: 24px; margin-bottom: 1.5rem; }
+
+        @media (min-width: 768px) {
+            h1 { font-size: 44px; }
+            h2, h3 { font-size: 28px; }
+        }
+
+        .nav-label, .back-link, .small-label {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.22em;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 768px) {
+            .nav-label.large { font-size: 22px; letter-spacing: 0.12em; }
+            .nav-label { font-size: 14px; }
+        }
+
+        p { max-width: var(--max-text); margin-bottom: 1.5rem; color: var(--text-ivory); }
+        p:last-child { margin-bottom: 0; }
+
+        a { color: inherit; text-decoration: none; transition: color 0.4s ease; cursor: pointer; }
+        a:hover { color: var(--accent-gold); }
+
+        /* ==================================================
+           SPA ROUTING
+           ================================================== */
+        .page-view {
+            display: none; opacity: 0; width: 100%; min-height: 100vh;
+            animation: fadeIn 1s forwards ease;
+        }
+        .page-view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ==================================================
+           NAVIGATION
+           ================================================== */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            height: var(--nav-height-mob);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 999;
+            background: rgba(8,6,4,0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        @media (min-width: 768px) { header { height: var(--nav-height-desk); } }
+
+        .nav-links {
+            display: flex; gap: 40px; align-items: center;
+            opacity: 0.72; transition: opacity 0.3s ease;
+        }
+        .nav-links:hover { opacity: 1; }
+        .nav-links a { color: var(--text-ivory); }
+        .nav-links a:hover, .nav-links a.active-link { color: var(--accent-gold); }
+
+        .menu-toggle {
+            display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1000;
+            position: absolute; right: 24px;
+        }
+        .menu-toggle span { width: 28px; height: 1px; background-color: var(--text-ivory); transition: 0.4s; }
+
+        @media (max-width: 768px) {
+            header { justify-content: flex-start; padding-left: 24px; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+                background-color: var(--bg-dark); flex-direction: column;
+                justify-content: center; align-items: center; gap: 32px;
+                transition: right 0.4s ease; opacity: 1;
+            }
+            .nav-links.active { right: 0; }
+            .menu-toggle { display: flex; }
+            .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        }
+
+        /* ==================================================
+           SPATIAL LAYOUTS
+           ================================================== */
+        section {
+            position: relative; width: 100%;
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 72px 24px;
+        }
+
+        @media (min-width: 768px) {
+            section { padding: 96px 6vw; }
+        }
+
+        .content-layer { position: relative; z-index: 10; width: 100%; max-width: 1180px; margin: 0 auto; }
         
-        function routeTo(pageId) {
-            // Close mobile menu
-            document.getElementById('nav-menu').classList.remove('active');
-            document.getElementById('mobile-menu-btn').classList.remove('active');
+        .atm-ground {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            z-index: 1; opacity: 1;
+        }
+        .atm-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;
+            background-color: rgba(74, 40, 24, 0.28); /* Warm brown overlay 28% */
+        }
+
+        /* Home Specific Heights */
+        .h-hero { height: 100svh; }
+        .h-opening { height: auto; min-height: 78vh; }
+        .h-principles { height: auto; min-height: 54vh; }
+        .h-quotes { height: auto; min-height: 88vh; }
+
+        @media (min-width: 768px) {
+            .h-hero { height: 100vh; }
+            .h-opening { height: 78vh; }
+            .h-principles { height: 54vh; }
+            .h-quotes { height: 88vh; }
+        }
+
+        /* ==================================================
+           IMAGE COLLAGES & INTERACTION
+           ================================================== */
+        .irregular-collage {
+            display: grid; grid-template-columns: 1fr; gap: 24px;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .irregular-collage {
+                grid-template-columns: 1.2fr 0.8fr; grid-template-rows: auto auto;
+                align-items: center;
+            }
+            .collage-main { grid-column: 1 / 2; grid-row: 1 / 3; }
+            .collage-stack-1 { grid-column: 2 / 3; grid-row: 1 / 2; margin-top: 40px; margin-left: -40px; }
+            .collage-stack-2 { grid-column: 2 / 3; grid-row: 2 / 3; margin-bottom: 40px; margin-left: 20px;}
+        }
+
+        .image-card {
+            width: 100%; object-fit: cover; display: block;
+            opacity: 0.78; z-index: 1; position: relative;
+            transition: transform 420ms ease, opacity 420ms ease, filter 420ms ease;
+        }
+        
+        .irregular-collage:hover .image-card { opacity: 0.55; }
+        .irregular-collage .image-card:hover {
+            transform: scale(1.025); opacity: 1; z-index: 5;
+        }
+
+        /* Aspect Ratios */
+        .aspect-16-9 { aspect-ratio: 16 / 9; }
+        .aspect-4-5 { aspect-ratio: 4 / 5; }
+
+        /* Preview Cards */
+        .preview-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        .preview-grid-2 { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        
+        @media (min-width: 768px) {
+            .preview-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+            .preview-grid-2 { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        }
+
+        .preview-item { display: block; text-decoration: none; }
+        .preview-item img {
+            width: 100%; min-height: 260px; object-fit: cover;
+            opacity: 0.9; transition: transform 420ms ease; margin-bottom: 1rem;
+        }
+        .preview-item:hover img { transform: scale(1.025); opacity: 1; }
+        
+        /* Floating Quotes Layout */
+        .quote-wrap { position: relative; width: 100%; height: 100%; min-height: 600px; display: flex; flex-direction: column; gap: 40px; padding: 40px 0; }
+        .q-txt { font-family: 'Petrona', serif; font-style: italic; color: var(--text-ivory); position: relative; }
+        
+        @media (min-width: 768px) {
+            .quote-wrap { display: block; padding: 0; }
+            .q-txt { position: absolute; }
+            .q1 { left: 8%; top: 18%; width: 360px; font-size: 32px; }
+            .q2 { right: 8%; top: 26%; width: 420px; font-size: 24px; text-align: right; }
+            .q3 { left: 38%; top: 48%; width: 420px; font-size: 32px; transform: translateX(-50%); text-align: center; }
+            .q4 { left: 14%; bottom: 18%; width: 420px; font-size: 24px; }
+            .q5 { right: 12%; bottom: 13%; width: 520px; font-size: 18px; text-align: right; }
+        }
+        @media (max-width: 767px) {
+            .q-txt { font-size: 22px; text-align: left !important; width: 100% !important; transform: none !important; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; }
+        }
+
+        /* Forms */
+        input, textarea {
+            width: 100%; background: transparent; border: none;
+            border-bottom: 1px solid var(--text-muted); color: var(--text-ivory);
+            font-family: 'Petrona', serif; font-size: 18px; padding: 12px 0; margin-bottom: 32px;
+        }
+        input:focus, textarea:focus { outline: none; border-bottom-color: var(--accent-gold); }
+        button {
+            background: transparent; color: var(--accent-gold); border: 1px solid var(--accent-gold);
+            padding: 12px 42px; font-family: 'Source Sans 3', sans-serif; letter-spacing: 0.14em;
+            font-size: 14px; cursor: pointer; text-transform: uppercase; transition: 0.3s;
+        }
+        button:hover { background: rgba(190, 130, 51, 0.15); }
+
+        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--text-muted); }
+        
+        /* Layout Utilities */
+        .d-flex-split { display: flex; flex-direction: column; gap: 48px; }
+        @media (min-width: 768px) {
+            .d-flex-split { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+            .w-48 { width: 48%; }
+            .w-42 { width: 42%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="menu-toggle" id="mobile-menu-btn">
+            <span></span><span></span><span></span>
+        </div>
+        <nav class="nav-links nav-label" id="nav-menu">
+            <a onclick="routeTo('home')">HOME</a>
+            <a onclick="routeTo('studio')">STUDIO</a>
+            <a onclick="routeTo('material')">MATERIAL</a>
+            <a onclick="routeTo('studies')">STUDIES</a>
+            <a onclick="routeTo('objects')">OBJECTS</a>
+            <a onclick="routeTo('commissions')">COMMISSIONS</a>
+            <a onclick="routeTo('contact')">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- ==================================================
+         HOME
+         ================================================== -->
+    <div id="home" class="page-view active" data-bg="#100D08">
+        <!-- 1. HERO -->
+        <section class="h-hero" style="padding: 0; align-items: center;">
+            <div class="atm-ground" style="background-image: url('dhyai_home_hero_jali-shadow-wide_01.jpg');"></div>
+            <div class="atm-overlay" style="background: linear-gradient(rgba(8,6,4,0.22), rgba(8,6,4,0.38));"></div>
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(rgba(8,6,4,0.42) 0%, transparent 55%); z-index: 3;"></div>
             
-            let found = false;
-            pages.forEach(page => {
-                if (page.id === pageId) {
-                    page.classList.add('active');
-                    found = true;
-                    // Apply background color mapped via data attribute
-                    document.body.style.backgroundColor = page.getAttribute('data-bg') || '#12100B';
-                } else {
-                    page.classList.remove('active');
-                }
-            });
+            <div class="content-layer" style="text-align: center; z-index: 4;">
+                <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" style="width: 100%; max-width: 250px; margin: 0 auto 1rem; display: block;">
+                <div class="heading-font" style="font-size: 26px; color: #D9CBAE; margin-bottom: 0.5rem;">ध्यै</div>
+                <div style="font-family: 'Petrona', serif; font-size: 22px; color: #D9CBAE;">To fix the mind upon</div>
+            </div>
+        </section>
+
+        <!-- 2. OPENING LINES -->
+        <section class="h-opening">
+            <div class="atm-ground fade-left" style="background-image: url('dhyai_home_transition_jali-shadow-vertical_01.jpg'); opacity: 0.8;"></div>
+            <div class="atm-overlay"></div>
+            <div class="content-layer">
+                <div style="max-width: 520px; margin-left: 8vw;">
+                    <p>A stone from a riverbed sits on the shelf for years.</p>
+                    <p>Objects that settle into life slowly are,</p>
+                    <p>Time, embodied in material.<br>Objects meant to live with.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PRINCIPLES -->
+        <section class="h-principles" style="background: #100D08;">
+            <div class="content-layer">
+                <div class="preview-grid">
+                    <div>
+                        <h2 class="heading-font" style="font-size: 24px;">Object gravity</h2>
+                        <p>A piece belongs without justification. It carries its own weight in a room.</p>
+                    </div>
+                    <div>
+                        <h2 class="heading-font" style="font-size: 24px;">Objects through time</h2>
+                        <p>The object moves across homes and decades without becoming obsolete.</p>
+                    </div>
+                    <div>
+                        <h2 class="heading-font" style="font-size: 24px;">Object coherence</h2>
+                        <p>Material, use, ageing, and repetition resolve into quiet certainty.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. FLOATING QUOTES -->
+        <section class="h-quotes" style="padding: 0;">
+            <div class="atm-ground" style="background-image: url('dhyai-jaali-shadow-folded-textile.jpg'); opacity: 0.6;"></div>
+            <div class="atm-overlay"></div>
+            <div class="content-layer quote-wrap">
+                <div class="q-txt q1">“There is an experience. Objects happen inside it.”</div>
+                <div class="q-txt q2">“Not minimal. Not maximal. Just deeply present.”</div>
+                <div class="q-txt q3">“Memory residing in material.”</div>
+                <div class="q-txt q4">“The object should feel like it belongs to time.”</div>
+                <div class="q-txt q5">“Memory may or may not be touched, but something pulls you toward the object. You are drawn to touch it.”</div>
+            </div>
+        </section>
+
+        <!-- 5. PREVIEW SECTION -->
+        <section style="background: #C9B88F; padding-top: 80px; padding-bottom: 90px;">
+            <div class="content-layer d-flex-split">
+                <!-- Studies -->
+                <div style="width: 100%; flex: 1.5; margin-right: 4vw;">
+                    <h2 class="nav-label large" style="color: #100D08; margin-bottom: 2rem;">Studies</h2>
+                    <div class="preview-grid">
+                        <a onclick="routeTo('sthana')" class="preview-item">
+                            <img src="dhyai_sthana_studies_flatlay_bc_1.jpg" alt="Sthāna" class="aspect-4-5">
+                            <h3 class="heading-font" style="color: #100D08; font-size: 20px;">Sthāna</h3>
+                        </a>
+                        <a onclick="routeTo('sthiti')" class="preview-item">
+                            <img src="dhyai_sthiti_studies_flatlay_bc_2.jpg" alt="Sthiti" class="aspect-4-5">
+                            <h3 class="heading-font" style="color: #100D08; font-size: 20px;">Sthiti</h3>
+                        </a>
+                        <a onclick="routeTo('punar')" class="preview-item">
+                            <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Punār" class="aspect-4-5">
+                            <h3 class="heading-font" style="color: #100D08; font-size: 20px;">Punār</h3>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Objects -->
+                <div style="width: 100%; flex: 1;">
+                    <h2 class="nav-label large" style="color: #100D08; margin-bottom: 2rem;">Objects</h2>
+                    <div class="preview-grid-2">
+                        <a onclick="routeTo('pebble-jar')" class="preview-item">
+                            <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jār Set" class="aspect-4-5">
+                            <h3 class="heading-font" style="color: #100D08; font-size: 20px;">Pebble Jār Set</h3>
+                        </a>
+                        <a onclick="routeTo('kalash')" class="preview-item">
+                            <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kālāsh" class="aspect-4-5" style="object-fit: contain; background: #1A120C;">
+                            <h3 class="heading-font" style="color: #100D08; font-size: 20px;">Kālāsh</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FOOTER -->
+        <footer style="background: #100D08; height: 110px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" style="height: 16px; margin-bottom: 8px;">
+            <div class="heading-font" style="font-size: 14px; color: var(--text-muted); margin-bottom: 4px;">ध्यै</div>
+            <div class="small-label" style="color: var(--text-muted); font-size: 10px;">Material expression of lived memory.</div>
+        </footer>
+    </div>
+
+    <!-- ==================================================
+         STUDIO
+         ================================================== -->
+    <div id="studio" class="page-view" data-bg="#1A120C">
+        <section style="margin-top: var(--nav-height-mob);">
+            <div class="content-layer">
+                <h1 class="heading-font">The Studio</h1>
+                <div class="d-flex-split">
+                    <div class="w-48">
+                        <p>DHYAI is a material and surface design practice based in Bengaluru. It works across objects, textiles, and material studies for homes, interiors, private events, gifting, and hospitality.</p>
+                        <p>The name ध्यै is Sanskrit — to fix the mind upon.<br>A fold. A weight. A softened edge. A repeated touch.<br>Some objects mark a moment. Others remain after the moment has passed. Dhyai works with the latter.</p>
+                        <p>Each piece begins with material. Weight, texture, density, and the way a surface interacts with light are treated as primary conditions. Form is derived from these conditions. The work begins with how an object holds: through handling, wear, and continued presen
+      });
             
             if (!found) {
                 document.getElementById('home').classList.add('active');
