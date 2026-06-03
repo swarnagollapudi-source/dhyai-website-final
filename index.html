@@ -7,660 +7,6 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Petrona:wght@400&family=Source+Sans+3:wght@400&display=swap" rel="stylesheet">
-
-    <style>
-        /* ==================================================
-           GLOBAL COLOR & ATMOSPHERE SYSTEM
-           ================================================== */
-        :root {
-            /* Warm dark tones replacing pure black */
-            --bg-dark: #12100B;
-            --bg-mid: #16130D;
-            --bg-warm: #1A160F; 
-            
-            /* Beige/Ivory tones for previews */
-            --bg-beige: #C9B993;
-            --bg-beige-light: #D1C2A1;
-            
-            /* Typography Colors */
-            --text-ivory: #D8C7AA;
-            --text-muted: #BBAE96;
-            --accent-gold: #BE8233;
-            --text-dark: #12100B; /* For beige sections */
-            
-            /* Layout */
-            --nav-height: 80px;
-            --pad-desk: 72px;
-            --pad-mob: 32px;
-            --max-text: 680px;
-        }
-
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        html, body {
-            width: 100%;
-            background-color: var(--bg-dark);
-            color: var(--text-ivory);
-            font-family: 'Petrona', serif;
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 1.35;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        @media (min-width: 1024px) {
-            html, body { font-size: 20px; }
-        }
-
-        /* ==================================================
-           TYPOGRAPHY (Exact Rules)
-           ================================================== */
-        h1, h2, h3, h4, .heading-font {
-            font-family: 'Marcellus', serif;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            color: var(--text-ivory);
-        }
-
-        /* Enforced sizing for section headings */
-        h2, h3 { 
-            font-size: 28px; 
-            margin-bottom: 1.5rem; 
-        }
-        
-        h3.accent { color: var(--accent-gold); }
-
-        .nav-label, nav a, .back-link {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 22px;
-            letter-spacing: 0.12em;
-            font-weight: 400;
-            text-transform: uppercase;
-        }
-
-        p {
-            max-width: var(--max-text);
-            margin-bottom: 1.5rem;
-            color: var(--text-muted);
-        }
-        p:last-child { margin-bottom: 0; }
-
-        a { color: inherit; text-decoration: none; transition: color 0.4s ease; cursor: pointer; }
-        a:hover { color: var(--accent-gold); }
-
-        /* ==================================================
-           MULTI-PAGE ROUTING ARCHITECTURE (SPA)
-           ================================================== */
-        .page-view {
-            display: none; opacity: 0; width: 100%; min-height: 100vh;
-            animation: atmosphericFadeIn 1s forwards ease-in-out;
-        }
-        .page-view.active { display: block; }
-
-        @keyframes atmosphericFadeIn {
-            0% { opacity: 0; transform: translateY(8px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ==================================================
-           NAVIGATION (Simple Nav Only, No Logo)
-           ================================================== */
-        header {
-            position: fixed; top: 0; left: 0; width: 100%;
-            height: var(--nav-height); padding: 0 var(--pad-desk);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 999;
-            background: linear-gradient(to bottom, rgba(18,16,11,0.9) 0%, rgba(18,16,11,0) 100%);
-            transition: background-color 0.6s ease;
-        }
-
-        header.scrolled { background-color: rgba(18,16,11,0.98); }
-
-        .nav-links {
-            display: flex; gap: 48px; flex-wrap: wrap; justify-content: center;
-        }
-
-        .menu-toggle {
-            display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1000;
-            position: absolute; right: var(--pad-mob);
-        }
-        .menu-toggle span { width: 30px; height: 1px; background-color: var(--text-ivory); transition: 0.4s; }
-
-        @media (max-width: 1024px) {
-            header { padding: 0 var(--pad-mob); justify-content: flex-end; }
-            .nav-links {
-                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-                background-color: var(--bg-dark); flex-direction: column;
-                justify-content: center; align-items: center; gap: 36px;
-                transition: right 0.5s ease;
-            }
-            .nav-links.active { right: 0; }
-            .menu-toggle { display: flex; }
-            .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-            .menu-toggle.active span:nth-child(2) { opacity: 0; }
-            .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-        }
-
-        /* ==================================================
-           SPATIAL LAYOUTS & MASKING
-           ================================================== */
-        section {
-            position: relative; width: 100%;
-            display: flex; flex-direction: column; justify-content: center;
-            padding: 96px var(--pad-desk);
-        }
-
-        @media (max-width: 1024px) {
-            section { padding: 80px var(--pad-mob); min-height: auto !important; }
-        }
-
-        .vh-100 { min-height: 100vh; }
-        .vh-80 { min-height: 80vh; }
-        .content-layer { position: relative; z-index: 10; width: 100%; }
-
-        /* Atmospheric Backgrounds - Adjusted Brightness Overlays (25-45%) */
-        .atm-ground {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center; background-repeat: no-repeat;
-            z-index: 1; opacity: 0.9;
-        }
-        .atm-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;
-            background-color: rgba(18, 16, 11, 0.35); /* Warm 35% overlay */
-        }
-
-        .fade-left { -webkit-mask-image: linear-gradient(to left, black 25%, transparent 95%); mask-image: linear-gradient(to left, black 25%, transparent 95%); }
-        .fade-right { -webkit-mask-image: linear-gradient(to right, black 25%, transparent 95%); mask-image: linear-gradient(to right, black 25%, transparent 95%); }
-
-        /* ==================================================
-           GRID & COLLAGE SYSTEM
-           ================================================== */
-        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 64px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr; gap: 48px; }
-
-        @media (min-width: 1024px) {
-            .grid-2 { grid-template-columns: 1fr 1fr; align-items: start; }
-            .grid-3 { grid-template-columns: 1fr 1fr 1fr; align-items: start; }
-        }
-
-        /* Irregular Collage Interaction */
-        .irregular-collage {
-            display: grid; grid-template-columns: 1.8fr 1fr; grid-template-rows: auto auto;
-            gap: 24px; align-items: center; position: relative;
-        }
-
-        .collage-img {
-            width: 100%; object-fit: cover; display: block;
-            opacity: 0.70; transition: transform 0.6s ease, opacity 0.6s ease, z-index 0.6s;
-            position: relative; z-index: 1; cursor: pointer;
-        }
-        
-        .irregular-collage:hover .collage-img { opacity: 0.55; }
-        .irregular-collage .collage-img:hover { transform: scale(1.025); opacity: 1; z-index: 10; }
-
-        .collage-large { grid-column: 1 / 2; grid-row: 1 / 3; aspect-ratio: 4/5; }
-        .collage-medium { grid-column: 2 / 3; grid-row: 1 / 2; aspect-ratio: 1/1; }
-        .collage-narrow { grid-column: 2 / 3; grid-row: 2 / 3; aspect-ratio: 9/16; }
-
-        @media (max-width: 1024px) {
-            .irregular-collage { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .collage-large, .collage-medium, .collage-narrow { grid-column: 1 / 2; grid-row: auto; aspect-ratio: 16/9; }
-        }
-
-        /* Basic images */
-        .img-16-9 { width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-bottom: 2rem; opacity: 0.85; transition: 0.5s ease; cursor: pointer; }
-        .img-16-9:hover { opacity: 1; transform: scale(1.015); }
-
-        /* ==================================================
-           SPECIFIC SECTIONS
-           ================================================== */
-        /* Hero Center Alignment */
-        .hero-center {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center;
-        }
-        .hero-center img.wordmark { max-width: 320px; margin-bottom: 2rem; display: block; margin-left: auto; margin-right: auto; }
-
-        /* Floating Quotes (Home S4) */
-        .quotes-scatter {
-            position: relative; width: 100%; min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: space-evenly;
-            padding: 80px 0;
-        }
-        .q-item { font-style: italic; color: var(--text-ivory); position: relative; max-width: 450px; }
-        .q-1 { align-self: flex-start; margin-left: 5vw; font-size: 26px; }
-        .q-2 { align-self: flex-end; margin-right: 5vw; text-align: right; font-size: 22px; }
-        .q-3 { align-self: center; text-align: center; font-size: 30px; color: var(--accent-gold); }
-        .q-4 { align-self: flex-start; margin-left: 15vw; font-size: 24px; }
-        .q-5 { align-self: flex-end; margin-right: 10vw; text-align: right; font-size: 20px; }
-
-        /* Beige Preview Section */
-        .beige-section {
-            background-color: var(--bg-beige); color: var(--text-dark);
-            padding-bottom: 120px;
-        }
-        .beige-section h2, .beige-section p, .beige-section h3 { color: var(--text-dark); }
-        .preview-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-bottom: 1.5rem; opacity: 1; transition: transform 0.5s ease; }
-        .preview-block { display: block; margin-bottom: 4rem; overflow: hidden; }
-        .preview-block:hover .preview-img { transform: scale(1.025); }
-
-        /* Back Links */
-        .back-link { display: inline-block; margin-bottom: 2rem; color: var(--text-muted); }
-        .back-link:hover { color: var(--accent-gold); }
-
-        /* Forms */
-        input, textarea {
-            width: 100%; background: transparent; border: none;
-            border-bottom: 1px solid rgba(216, 199, 170, 0.3);
-            color: var(--text-ivory); font-family: 'Petrona', serif;
-            font-size: 20px; padding: 12px 0; margin-bottom: 32px; outline: none;
-        }
-        input:focus, textarea:focus { border-bottom-color: var(--accent-gold); }
-        button {
-            background: transparent; color: var(--accent-gold); border: 1px solid var(--accent-gold);
-            padding: 12px 42px; font-family: 'Source Sans 3', sans-serif; letter-spacing: 0.12em;
-            font-size: 18px; cursor: pointer; text-transform: uppercase; transition: 0.4s;
-        }
-        button:hover { background: rgba(190, 130, 51, 0.15); }
-
-        /* Footer */
-        footer {
-            padding: 64px var(--pad-desk); text-align: center;
-            background-color: var(--bg-beige-light); color: var(--text-dark);
-            font-family: 'Source Sans 3', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; font-size: 16px;
-        }
-    </style>
-</head>
-<body>
-
-    <header id="main-header">
-        <div class="menu-toggle" id="mobile-menu-btn">
-            <span></span><span></span><span></span>
-        </div>
-        <nav class="nav-links" id="nav-menu">
-            <a onclick="routeTo('home')">Home</a>
-            <a onclick="routeTo('studio')">Studio</a>
-            <a onclick="routeTo('material')">Material</a>
-            <a onclick="routeTo('studies')">Studies</a>
-            <a onclick="routeTo('objects')">Objects</a>
-            <a onclick="routeTo('commissions')">Commissions</a>
-            <a onclick="routeTo('contact')">Contact</a>
-        </nav>
-    </header>
-
-    <div id="home" class="page-view active" data-bg="var(--bg-dark)">
-        
-        <section class="vh-100 hero-center" style="padding-top: var(--nav-height);">
-            <div class="atm-ground" style="background-image: url('dhyai_home_hero_jali-shadow-wide_01.jpg');"></div>
-            <div class="atm-overlay"></div>
-            <div class="content-layer">
-                <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" class="wordmark">
-                <div class="heading-font" style="font-size: 32px; margin-bottom: 1rem;">ध्यै</div>
-                <div class="heading-font" style="font-size: 28px;">To fix the mind upon</div>
-            </div>
-        </section>
-
-        <section class="vh-80">
-            <div class="atm-ground fade-left" style="background-image: url('dhyai_home_transition_jali-shadow-vertical_01.jpg');"></div>
-            <div class="atm-overlay" style="background: linear-gradient(to left, rgba(26,22,15,0.3) 0%, rgba(26,22,15,0.85) 80%);"></div>
-            
-            <div class="content-layer" style="max-width: 520px;">
-                <p>A stone from a riverbed sits on the shelf for years.</p>
-                <p>Objects that settle into life slowly are,</p>
-                <p>Time, embodied in material.<br>Objects meant to live with.</p>
-            </div>
-        </section>
-
-        <section class="vh-80" style="background-color: var(--bg-mid);">
-            <div class="content-layer grid-3">
-                <div>
-                    <h2 class="heading-font">Object gravity</h2>
-                    <p>A piece belongs without justification. It carries its own weight in a room.</p>
-                </div>
-                <div>
-                    <h2 class="heading-font">Objects through time</h2>
-                    <p>The object moves across homes and decades without becoming obsolete.</p>
-                </div>
-                <div>
-                    <h2 class="heading-font">Object coherence</h2>
-                    <p>Material, use, ageing, and repetition resolve into quiet certainty.</p>
-                </div>
-            </div>
-        </section>
-
-        <section style="padding: 0; background-color: var(--bg-warm);">
-            <div class="atm-ground" style="background-image: url('dhyai-jaali-shadow-folded-textile.jpg'); opacity: 0.5;"></div>
-            <div class="atm-overlay"></div>
-            <div class="content-layer quotes-scatter">
-                <div class="q-item q-1 heading-font">“There is an experience. Objects happen inside it.”</div>
-                <div class="q-item q-2 heading-font">“Not minimal. Not maximal. Just deeply present.”</div>
-                <div class="q-item q-3 heading-font">“Memory residing in material.”</div>
-                <div class="q-item q-4 heading-font">“The object should feel like it belongs to time.”</div>
-                <div class="q-item q-5 heading-font">“Memory may or may not be touched, but something pulls you toward the object. You are drawn to touch it.”</div>
-            </div>
-        </section>
-
-        <section class="beige-section">
-            <div class="content-layer grid-2">
-                <div>
-                    <h2 class="heading-font" style="margin-bottom: 3rem;">Studies Preview</h2>
-                    
-                    <a onclick="routeTo('sthana')" class="preview-block">
-                        <img src="dhyai_sthana_studies_flatlay_bc_1.jpg" alt="Sthāna" class="preview-img">
-                        <h3 class="heading-font">Sthāna</h3>
-                    </a>
-                    <a onclick="routeTo('sthiti')" class="preview-block">
-                        <img src="dhyai_sthiti_studies_flatlay_bc_2.jpg" alt="Sthiti" class="preview-img">
-                        <h3 class="heading-font">Sthiti</h3>
-                    </a>
-                    <a onclick="routeTo('punar')" class="preview-block">
-                        <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Punār" class="preview-img">
-                        <h3 class="heading-font">Punār</h3>
-                    </a>
-                </div>
-                
-                <div>
-                    <h2 class="heading-font" style="margin-bottom: 3rem;">Metal Studies</h2>
-                    
-                    <a onclick="routeTo('pebble-jar')" class="preview-block">
-                        <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jār Set" class="preview-img">
-                        <h3 class="heading-font">Pebble Jār Set</h3>
-                    </a>
-                    <a onclick="routeTo('kalash')" class="preview-block">
-                        <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kālāsh" class="preview-img">
-                        <h3 class="heading-font">Kālāsh</h3>
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-        <footer>© DHYAI. All rights reserved.</footer>
-    </div>
-
-    <div id="studio" class="page-view" data-bg="var(--bg-mid)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <h2 class="heading-font">The Studio</h2>
-                <p>DHYAI is a material and surface design practice working across textile, cast metal, ceramic, wood, terracotta, and other mediums.</p>
-                <p>The work begins with how an object holds: through handling, wear, and continued presence within a space.</p>
-                <p>Some objects mark a moment. Others remain after the moment has passed. Dhyai works with the latter.</p>
-                <p>Each piece begins with material. Weight, texture, density, and the way a surface interacts with light are treated as primary conditions. Form is derived from these conditions.</p>
-                <p>Objects are developed for use, handling, and retention. They enter gradually, settle over time, and remain without requiring explanation.</p>
-            </div>
-        </section>
-
-        <section>
-            <div class="content-layer grid-2">
-                <div class="irregular-collage">
-                    <img src="dhyai_process_blockprint-yellow-tray_01.jpg" alt="Blockprint Tray" class="collage-img collage-large">
-                    <img src="dhyai_process_blockprint-yellow-tray_02.jpg" alt="Blockprint Detail" class="collage-img collage-medium">
-                    <img src="dhyai-process-block-printing.jpg" alt="Process" class="collage-img collage-narrow">
-                </div>
-                <div class="irregular-collage" style="margin-top: 80px;">
-                    <img src="dhyai_process_brass_lathe_01.jpg" alt="Brass Lathe" class="collage-img collage-large">
-                    <img src="dhyai_process_label-stitching-detail_01.jpg" alt="Label Stitching" class="collage-img collage-medium">
-                    <img src="dhyai_studio_stacking_atmosphere-6.jpg" alt="Studio Atmosphere" class="collage-img collage-narrow">
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="material" class="page-view" data-bg="var(--bg-warm)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <h2 class="heading-font">Material</h2>
-                <p class="heading-font" style="color: var(--accent-gold);">Matter holding time.</p>
-            </div>
-        </section>
-
-        <section>
-            <div class="content-layer grid-2">
-                <div>
-                    <h3 class="heading-font accent">Textile</h3>
-                    <p>We work with all sorts of textiles: pure cotton, muslin, silk and more. The fabrics are chosen for how they drape, how they hold shadows, and how they soften with lived experience.</p>
-                    <p>Textile object construction and design extend multiple techniques, both modern and traditional. Be it hand block print, kantha stitch, age old madhubani painting or modern digital prints rooted in conceptual design language.</p>
-                    <p>The current studies are not surface decoration. They are object families — bedsheets, bedcovers, dohars, table covers, table linen sets — developed through repetition, spacing, weight, and use.</p>
-                    <p>Each design is born out of reason and experiential phenomenon. It is a memory. It is a moment. It is a monument.</p>
-                </div>
-                <div class="irregular-collage">
-                    <img src="dhyai-material-textile-shadow-fall.jpg" alt="Textile Shadow" class="collage-img collage-large">
-                    <img src="dhyai_process_blockprint-yellow-tray_02.jpg" alt="Block Printing" class="collage-img collage-medium">
-                    <img src="dhyai_process_label-stitching-detail_01.jpg" alt="Label Detail" class="collage-img collage-narrow">
-                </div>
-            </div>
-        </section>
-
-        <section style="background-color: var(--bg-dark);">
-            <div class="content-layer grid-2">
-                <div class="irregular-collage">
-                    <img src="dhyai-material-brass-kalash-shadow.jpg" alt="Kalash Shadow" class="collage-img collage-large">
-                    <img src="dhyai_process_brass_lathe_01.jpg" alt="Brass Lathe" class="collage-img collage-medium">
-                    <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kalash Lineup" class="collage-img collage-narrow">
-                </div>
-                <div>
-                    <h3 class="heading-font accent">Cast Brass</h3>
-                    <p>Intimate intellectual and spiritual experiences bring out the conception of objects that are then translated into the grammar of material. Material is only a medium. And material such as brass, embodies that grammar most generously.</p>
-                    <p>The brass develops a living patina over time, where the surface deepens with use. And the weight of the material is essential to its presence in a room.</p>
-                    <p>Brass pieces are sand-cast, lathe-finished, and satin-brushed.</p>
-                    <p>Current brass work includes the Pebble Jār Set and the Kālāsh. Both are made for household use, gifting programmes, and custom adaptations.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="studies" class="page-view" data-bg="var(--bg-mid)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <h2 class="heading-font">Studies</h2>
-                <p>Controlled rhythms in form and fabric.</p>
-                <p>Studies are released as complete object families. Pieces may be ordered individually or specified in volume for events, gifting, and hospitality programmes.</p>
-                
-                <div class="grid-3" style="margin-top: 60px;">
-                    <div>
-                        <a onclick="routeTo('sthana')" class="preview-block">
-                            <img src="dhyai_sthana_studies_flatlay_bc_1.jpg" alt="Sthāna" class="img-16-9">
-                            <h3 class="heading-font" style="color: var(--text-ivory);">Sthāna</h3>
-                        </a>
-                    </div>
-                    <div>
-                        <a onclick="routeTo('sthiti')" class="preview-block">
-                            <img src="dhyai_sthiti_studies_flatlay_bc_2.jpg" alt="Sthiti" class="img-16-9">
-                            <h3 class="heading-font" style="color: var(--text-ivory);">Sthiti</h3>
-                        </a>
-                    </div>
-                    <div>
-                        <a onclick="routeTo('punar')" class="preview-block">
-                            <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Punār" class="img-16-9">
-                            <h3 class="heading-font" style="color: var(--text-ivory);">Punār</h3>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="sthana" class="page-view" data-bg="var(--bg-dark)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <a onclick="routeTo('studies')" class="back-link">← Back to Studies</a>
-                <div class="grid-2" style="margin-top: 2rem;">
-                    <div>
-                        <h2 class="heading-font">Study One — Sthāna</h2>
-                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 2rem;">स्थान · to be housed</p>
-                        <p>A rose has been climbing the brick wall for some years. The brick holds it, and the rose holds the brick.</p>
-                        <p>Sthāna is the cloth that comes from looking at this for long enough.</p>
-                        <p>Hand-block-printed in cotton, in a single field of greens, with six to seven rose medallions held within the brick lattice.</p>
-                        <p>Where Sthiti speaks, Sthāna simply occupies.</p>
-                        <p>For rooms where the cloth should feel like it was always there.</p>
-                        <p style="margin-top: 3rem; color: var(--text-dim);">Formats: bedsheet, bedcover, dohar, table cover, table linen set.</p>
-                    </div>
-                    <div class="irregular-collage">
-                        <img src="dhyai-studies-sthana-dohar-in-use.jpg" alt="Atmosphere" class="collage-img collage-large">
-                        <img src="dhyai_sthana_studies_detail_bs_2.jpg" alt="Detail" class="collage-img collage-medium">
-                        <img src="dhyai_studies_sthana-table-linen-set-arranged_02.jpg" alt="Object Use" class="collage-img collage-narrow">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="sthiti" class="page-view" data-bg="var(--bg-dark)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <a onclick="routeTo('studies')" class="back-link">← Back to Studies</a>
-                <div class="grid-2" style="margin-top: 2rem;">
-                    <div>
-                        <h2 class="heading-font">Study Two — Sthiti</h2>
-                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 2rem;">स्थिति · the held moment</p>
-                        <p>The same wall, on the day of a celebration.</p>
-                        <p>The roses are still there. The brick is still there. Colour has entered the field because something in the house has shifted.</p>
-                        <p>A design where colour and form have stopped moving against each other and simply arrived.</p>
-                        <p>A grid that holds its ground.<br>A floral medallion that punctuates, not decorates.</p>
-                        <p>The bedroom.<br>The dining table.<br>The room you return to without thinking.</p>
-                        <p style="margin-top: 3rem; color: var(--text-dim);">Formats: bedsheet, bedcover, dohar, table cover, table linen set.</p>
-                    </div>
-                    <div class="irregular-collage">
-                        <img src="dhyai-studies-sthiti-dohar-in-use-1.jpg" alt="Atmosphere" class="collage-img collage-large">
-                        <img src="dhyai_sthiti_studies_detail_bc_3.jpg" alt="Detail" class="collage-img collage-medium">
-                        <img src="dhyai_studies_sthiti-tablecover-kalash-wide_01.jpg" alt="Object Use" class="collage-img collage-narrow">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="punar" class="page-view" data-bg="var(--bg-dark)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <a onclick="routeTo('studies')" class="back-link">← Back to Studies</a>
-                <div class="grid-2" style="margin-top: 2rem;">
-                    <div>
-                        <h2 class="heading-font">Study Three — Punār</h2>
-                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 2rem;">पुनः · again</p>
-                        <p>A pause taken beneath a tall palm.</p>
-                        <p>The eye looks up, looks again.</p>
-                        <p>Punār is the cloth that records the second look, when the rhythm slows. The palm sits inside a more openly spaced rectangular structure.</p>
-                        <p>The dohar reverse carries a dot grid — a quieter field on the face the eye does not always see.</p>
-                        <p>Suited to rooms where surfaces need to read with more air.</p>
-                        <p style="margin-top: 3rem; color: var(--text-dim);">Formats: bedsheet, bedcover, dohar.</p>
-                    </div>
-                    <div class="irregular-collage">
-                        <img src="dhyai-studies-punar-dohar-in-use-1.jpg" alt="Atmosphere" class="collage-img collage-large">
-                        <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Detail" class="collage-img collage-medium">
-                        <img src="dhyai-studies-punar-dohar-in-use-2.jpg" alt="Object Use" class="collage-img collage-narrow">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="objects" class="page-view" data-bg="var(--bg-mid)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <h2 class="heading-font">Objects</h2>
-                <p>Objects are material translations of the same design philosophy.</p>
-                
-                <div class="grid-2" style="margin-top: 60px;">
-                    <div>
-                        <a onclick="routeTo('pebble-jar')" class="preview-block">
-                            <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jār Set" class="img-16-9">
-                            <h3 class="heading-font" style="color: var(--text-ivory);">Pebble Jār Set</h3>
-                        </a>
-                    </div>
-                    <div>
-                        <a onclick="routeTo('kalash')" class="preview-block">
-                            <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kālāsh" class="img-16-9">
-                            <h3 class="heading-font" style="color: var(--text-ivory);">Kālāsh</h3>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="pebble-jar" class="page-view" data-bg="var(--bg-dark)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <a onclick="routeTo('objects')" class="back-link">← Back to Objects</a>
-                <div class="grid-2" style="margin-top: 2rem;">
-                    <div>
-                        <h2 class="heading-font">Pebble Jār Set</h2>
-                        <p>Two jars that sit in the hand, like pebbles taken from a riverbank.</p>
-                        <p>The tray is the flat rock one carries home to place the pebbles.</p>
-                        <p>Solid brass. Satin-brushed. Made for table use — salt, condiments, dry spices, small offerings.</p>
-                        <p>A pebble from a riverbed — held in the hand once, understood completely.</p>
-                        <p>The patina is the accumulation of every time the object was picked up.</p>
-                    </div>
-                    <div class="irregular-collage">
-                        <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jar" class="collage-img collage-large">
-                        <img src="dhyai_studies_pebble_js_2.png" alt="Pebble Jar Open" class="collage-img collage-medium">
-                        <img src="dhyai_studies_pebble_js_3.png" alt="Pebble Jar Tray" class="collage-img collage-narrow">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="kalash" class="page-view" data-bg="var(--bg-dark)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <a onclick="routeTo('objects')" class="back-link">← Back to Objects</a>
-                <div class="grid-2" style="margin-top: 2rem;">
-                    <div>
-                        <h2 class="heading-font">Kālāsh</h2>
-                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 2rem;">कलश · a vessel</p>
-                        <p>A form that has existed in this part of the world for as long as there has been a part of the world.</p>
-                        <p>Cast in solid brass, satin-brushed, with a single engraving on the belly.</p>
-                        <p>Made for puja, household ritual, and everyday presence.</p>
-                        <p>Water in brass changes.<br>The vessel holds that change.</p>
-                        <p>A full belly, a cast shoulder, a steadiness that requires no explanation.</p>
-                    </div>
-                    <div class="irregular-collage">
-                        <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kalash Lineup" class="collage-img collage-large">
-                        <img src="dhyai-material-brass-kalash-shadow.jpg" alt="Kalash Shadow" class="collage-img collage-medium">
-                        <img src="dhyai_studies_brass-vessel-front-room_01.jpg" alt="Kalash Front Room" class="collage-img collage-narrow">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="commissions" class="page-view" data-bg="var(--bg-dark)">
-        <section style="margin-top: var(--nav-height);">
-            <div class="content-layer">
-                <h2 class="heading-font">Commissions</h2>
-                <p>Commissions are how the studio enters another house.</p>
-                <p>The brief arrives, the work is drawn, and the pieces are made for a particular space, occasion, or gathering.</p>
-                <p>The studio works across textile, metal, ceramic, wood, and surface applications — in small numbers and over longer timelines.</p>
-            </div>
-        </section>
-
-        <section style="background-color: var(--bg-mid);">
-            <div class="content-layer grid-2">
-                <div>
-                    <h3 class="heading-font">Weddings and private events</h3>
-                    <p>Return gifts, welcome objects, table programmes, ritual objects — designed around a single occasion in a single house.</p>
-                    
-                    <h3 class="heading-font" style="margin-top: 3rem;">Corporate gifting</h3>
-                    <p>Considered gifting for senior teams, partners, and clients. Custom motifs, quiet packaging, and objects made to stay beyond the event.</p>
-                    
-                    <h3 class="heading-font" style="margin-top: 3rem;">Hospitality, interiors, and private commissions</h3>
-                    <p>Surfaces drawn for a defined room or programme — a hotel suite, a restaurant table, a residential bedroom, a private cycle of gifting.</p>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DHYAI</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Petrona:ital,wght@0,400;1,300;1,400&family=Source+Sans+3:wght@400&display=swap" rel="stylesheet">
 
     <style>
@@ -1062,15 +408,381 @@
                     <div class="w-48">
                         <p>DHYAI is a material and surface design practice based in Bengaluru. It works across objects, textiles, and material studies for homes, interiors, private events, gifting, and hospitality.</p>
                         <p>The name ध्यै is Sanskrit — to fix the mind upon.<br>A fold. A weight. A softened edge. A repeated touch.<br>Some objects mark a moment. Others remain after the moment has passed. Dhyai works with the latter.</p>
-                        <p>Each piece begins with material. Weight, texture, density, and the way a surface interacts with light are treated as primary conditions. Form is derived from these conditions. The work begins with how an object holds: through handling, wear, and continued presen
-      });
+                        <p>Each piece begins with material. Weight, texture, density, and the way a surface interacts with light are treated as primary conditions. Form is derived from these conditions. The work begins with how an object holds: through handling, wear, and continued presence within a space. Objects are developed for use, handling, and retention.</p>
+                        <p>The studio focuses on the intersection of technical product engineering, architectural structure, surface rhythm, and tactile permanence.</p>
+                        <p>The work is produced in small numbers, by hand, in workshops the studio has chosen to work with over time.<br>Nothing is hurried.</p>
+                    </div>
+                    <div class="w-42 irregular-collage">
+                        <img src="dhyai_process_blockprint-yellow-tray_01.jpg" alt="Block Printing" class="image-card collage-main">
+                        <img src="dhyai-process-block-printing.jpg" alt="Textile Handling" class="image-card collage-stack-1">
+                        <img src="dhyai_process_label-stitching-detail_01.jpg" alt="Label Stitching" class="image-card collage-stack-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         MATERIAL
+         ================================================== -->
+    <div id="material" class="page-view" data-bg="#100D08">
+        <section style="margin-top: var(--nav-height-mob); padding-bottom: 48px;">
+            <div class="content-layer">
+                <h1 class="heading-font">Material</h1>
+                <p class="heading-font" style="font-size: 28px; color: var(--accent-gold);">Matter holding time.</p>
+            </div>
+        </section>
+
+        <!-- Textile -->
+        <section style="padding-top: 0;">
+            <div class="content-layer d-flex-split">
+                <div class="w-48">
+                    <h2 class="heading-font">Textile</h2>
+                    <p>DHYAI works with all textiles: pure cotton, muslin, silk and more. The fabrics are chosen for how they drape, how they hold shadows, and how they soften with lived experience.</p>
+                    <p>Textile object construction and design extend multiple techniques, both modern and traditional. Be it hand block print, kantha stitch, age old madhubani painting or modern digital prints rooted in conceptual design language.</p>
+                    <p>The current studies are not surface decoration. They are object families — bedsheets, bedcovers, dohars, table covers, table linen sets — developed through repetition, spacing, weight, and use.</p>
+                    <p>Each design is born out of reason and experiential phenomenon. It is a memory. It is a moment. It is a monument.</p>
+                </div>
+                <div class="w-42 irregular-collage">
+                    <img src="dhyai-material-textile-shadow-fall.jpg" alt="Textile Shadow" class="image-card collage-main">
+                    <img src="dhyai_process_blockprint-yellow-tray_02.jpg" alt="Printing" class="image-card collage-stack-1">
+                    <img src="dhyai_process_label-stitching-detail_01.jpg" alt="Stitching" class="image-card collage-stack-2">
+                </div>
+            </div>
+        </section>
+
+        <!-- Cast Brass -->
+        <section style="background: #1A120C;">
+            <div class="content-layer d-flex-split">
+                <div class="w-42 irregular-collage" style="order: 1;">
+                    <img src="dhyai-material-brass-kalash-shadow.jpg" alt="Kalash Shadow" class="image-card collage-main">
+                    <img src="dhyai_process_brass_lathe_01.jpg" alt="Lathe" class="image-card collage-stack-1">
+                    <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kalash" class="image-card collage-stack-2" style="object-fit: contain;">
+                </div>
+                <div class="w-48" style="order: 2;">
+                    <h2 class="heading-font">Cast Brass</h2>
+                    <p>Intimate intellectual and spiritual experiences bring out the conception of objects that are then translated into the grammar of material. Material is only a medium. And material such as brass, embodies that grammar most generously.</p>
+                    <p>The brass develops a living patina over time, where the surface deepens with use. And the weight of the material is essential to its presence in a room.</p>
+                    <p>Brass pieces are sand-cast, lathe-finished, and satin-brushed.</p>
+                    <p>Current brass work includes the Pebble Jār Set and the Kālāsh. Both are made for household use, gifting programmes, and custom adaptations.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         STUDIES LANDING
+         ================================================== -->
+    <div id="studies" class="page-view" data-bg="#1A120C">
+        <section style="margin-top: var(--nav-height-mob);">
+            <div class="content-layer">
+                <h1 class="heading-font">Studies</h1>
+                <p>Controlled rhythms in form and fabric.</p>
+                <p>Studies are released as complete object families. Pieces may be ordered individually or specified in volume for events, gifting, and hospitality programmes.</p>
+                
+                <div class="preview-grid" style="margin-top: 60px;">
+                    <a onclick="routeTo('sthana')" class="preview-item">
+                        <img src="dhyai_sthana_studies_flatlay_bc_1.jpg" alt="Sthāna" class="aspect-4-5 image-card">
+                        <h3 class="heading-font">Sthāna</h3>
+                    </a>
+                    <a onclick="routeTo('sthiti')" class="preview-item">
+                        <img src="dhyai_sthiti_studies_flatlay_bc_2.jpg" alt="Sthiti" class="aspect-4-5 image-card">
+                        <h3 class="heading-font">Sthiti</h3>
+                    </a>
+                    <a onclick="routeTo('punar')" class="preview-item">
+                        <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Punār" class="aspect-4-5 image-card">
+                        <h3 class="heading-font">Punār</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         STHANA
+         ================================================== -->
+    <div id="sthana" class="page-view" data-bg="#100D08">
+        <section style="margin-top: var(--nav-height-mob);">
+            <div class="content-layer">
+                <a onclick="routeTo('studies')" class="back-link nav-label">← Back to Studies</a>
+                <div class="d-flex-split">
+                    <div class="w-48">
+                        <h1 class="heading-font">Study One — Sthāna</h1>
+                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 2rem;">स्थान · to be housed</p>
+                        <p>A rose has been climbing the brick wall for some years. The brick holds it, and the rose holds the brick.</p>
+                        <p>Sthāna is the cloth that comes from looking at this for long enough.</p>
+                        <p>Hand-block-printed in cotton, in a single field of greens, with six to seven rose medallions held within the brick lattice.</p>
+                        <p>Where Sthiti speaks, Sthāna simply occupies.</p>
+                        <p>For rooms where the cloth should feel like it was always there.</p>
+                        <p style="margin-top: 3rem; color: var(--text-muted);">Formats: bedsheet, bedcover, dohar, table cover, table linen set.</p>
+                    </div>
+                    <div class="w-44 irregular-collage">
+                        <img src="dhyai-studies-sthana-dohar-in-use.jpg" alt="Atmosphere" class="image-card collage-main">
+                        <img src="dhyai_sthana_studies_detail_bs_2.jpg" alt="Detail" class="image-card collage-stack-1">
+                        <img src="dhyai_studies_sthana-table-linen-set-arranged_02.jpg" alt="Object Use" class="image-card collage-stack-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         STHITI
+         ================================================== -->
+    <div id="sthiti" class="page-view" data-bg="#100D08">
+        <section style="margin-top: var(--nav-height-mob);">
+            <div class="content-layer">
+                <a onclick="routeTo('studies')" class="back-link nav-label">← Back to Studies</a>
+                <div class="d-flex-split">
+                    <div class="w-48">
+                        <h1 class="heading-font">Study Two — Sthiti</h1>
+                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 2rem;">स्थिति · the held moment</p>
+                        <p>The same wall, on the day of a celebration.</p>
+                        <p>The roses are still there. The brick is still there. Colour has entered the field because something in the house has shifted.</p>
+                        <p>A design where colour and form have stopped moving against each other and simply arrived.</p>
+                        <p>A grid that holds its ground.<br>A floral medallion that punctuates, not decorates.</p>
+                        <p>The bedroom.<br>The dining table.<br>The room you return to without thinking.</p>
+                        <p style="margin-top: 3rem; color: var(--text-muted);">Formats: bedsheet, bedcover, dohar, table cover, table linen set.</p>
+                    </div>
+                    <div class="w-44 irregular-collage">
+                        <img src="dhyai-studies-sthiti-dohar-in-use-1.jpg" alt="Atmosphere" class="image-card collage-main">
+                        <img src="dhyai_sthiti_studies_detail_bc_3.jpg" alt="Detail" class="image-card collage-stack-1">
+                        <img src="dhyai_studies_sthiti-tablecover-kalash-wide_01.jpg" alt="Object Use" class="image-card collage-stack-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         PUNAR
+         ================================================== -->
+    <div id="punar" class="page-view" data-bg="#100D08">
+        <section style="margin-top: var(--nav-height-mob);">
+            <div class="content-layer">
+                <a onclick="routeTo('studies')" class="back-link nav-label">← Back to Studies</a>
+                <div class="d-flex-split">
+                    <div class="w-48">
+                        <h1 class="heading-font">Study Three — Punār</h1>
+                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 2rem;">पुनर् · again</p>
+                        <p>A pause taken beneath a tall palm.</p>
+                        <p>The eye looks up, looks again.</p>
+                        <p>Punār is the cloth that records the second look, when the rhythm slows. The palm sits inside a more openly spaced rectangular structure.</p>
+                        <p>The dohar reverse carries a dot grid — a quieter field on the face the eye does not always see.</p>
+                        <p>Suited to rooms where surfaces need to read with more air.</p>
+                        <p style="margin-top: 3rem; color: var(--text-muted);">Formats: bedsheet, bedcover, dohar.</p>
+                    </div>
+                    <div class="w-44 irregular-collage">
+                        <img src="dhyai-studies-punar-dohar-in-use-1.jpg" alt="Atmosphere" class="image-card collage-main">
+                        <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Detail" class="image-card collage-stack-1">
+                        <img src="dhyai-studies-punar-dohar-in-use-2.jpg" alt="Object Use" class="image-card collage-stack-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         OBJECTS LANDING
+         ================================================== -->
+    <div id="objects" class="page-view" data-bg="#1A120C">
+        <section style="margin-top: var(--nav-height-mob);">
+            <div class="content-layer">
+                <h1 class="heading-font">Objects</h1>
+                <p>BRASS</p>
+                
+                <div class="preview-grid-2" style="margin-top: 60px;">
+                    <a onclick="routeTo('pebble-jar')" class="preview-item">
+                        <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jār Set" class="aspect-4-5 image-card" style="object-fit: contain; background: #100D08;">
+                        <h3 class="heading-font">Pebble Jār Set</h3>
+                    </a>
+                    <a onclick="routeTo('kalash')" class="preview-item">
+                        <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kālāsh" class="aspect-4-5 image-card" style="object-fit: contain; background: #100D08;">
+                        <h3 class="heading-font">Kālāsh</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         PEBBLE JAR
+         ================================================== -->
+    <div id="pebble-jar" class="page-view" data-bg="#100D08">
+        <section style="margin-top: var(--nav-height-mob);">
+            <div class="content-layer">
+                <a onclick="routeTo('objects')" class="back-link nav-label">← Back to Objects</a>
+                <div class="d-flex-split">
+                    <div class="w-48">
+                        <h1 class="heading-font">Pebble Jār Set</h1>
+                        <p>Two jars that sit in the hand, like pebbles taken from a riverbank.</p>
+                        <p>The tray is the flat rock one carries home to place the pebbles.</p>
+                        <p>Solid brass. Satin-brushed. Made for table use — salt, condiments, dry spices, small offerings.</p>
+                        <p>A pebble from a riverbed — held in the hand once, understood completely.</p>
+                        <p>The patina is the accumulation of every time the object was picked up.</p>
+                        
+                        <a onclick="routeTo('contact')" class="back-link nav-label" style="margin-top: 3rem;">Enquire about Pebble Jār Set → CONTACT</a>
+                    </div>
+                    <div class="w-44 irregular-collage">
+                        <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jar" class="image-card collage-main" style="object-fit: contain;">
+                        <img src="dhyai_studies_pebble_js_2.png" alt="Pebble Jar Open" class="image-card collage-stack-1" style="object-fit: contain;">
+                        <img src="dhyai_studies_pebble_js_3.png" alt="Pebble Jar Tray" class="image-card collage-stack-2" style="object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         KALASH
+         ================================================== -->
+    <div id="kalash" class="page-view" data-bg="#100D08">
+        <section style="margin-top: var(--nav-height-mob);">
+            <div class="content-layer">
+                <a onclick="routeTo('objects')" class="back-link nav-label">← Back to Objects</a>
+                <div class="d-flex-split">
+                    <div class="w-48">
+                        <h1 class="heading-font">Kālāsh</h1>
+                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 2rem;">कलश · a vessel</p>
+                        <p>A form that has existed in this part of the world for as long as there has been a part of the world.</p>
+                        <p>Cast in solid brass, satin-brushed, with a single engraving on the belly.</p>
+                        <p>Made for puja, household ritual, and everyday presence.</p>
+                        <p>Water in brass changes.<br>The vessel holds that change.</p>
+                        <p>A full belly, a cast shoulder, a steadiness that requires no explanation.</p>
+                        
+                        <a onclick="routeTo('contact')" class="back-link nav-label" style="margin-top: 3rem;">Enquire about Kālāsh → CONTACT</a>
+                    </div>
+                    <div class="w-44 irregular-collage">
+                        <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kalash Lineup" class="image-card collage-main" style="object-fit: contain;">
+                        <img src="dhyai-material-brass-kalash-shadow.jpg" alt="Kalash Shadow" class="image-card collage-stack-1">
+                        <img src="dhyai_studies_brass-vessel-front-room_01.jpg" alt="Front Room" class="image-card collage-stack-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         COMMISSIONS
+         ================================================== -->
+    <div id="commissions" class="page-view" data-bg="#100D08">
+        <section class="h-hero" style="padding-top: var(--nav-height-mob);">
+            <div class="atm-ground fade-bottom" style="background-image: url('dhyai-jaali-brick-depth.png'); opacity: 0.6;"></div>
+            <div class="atm-overlay" style="background: linear-gradient(to top, rgba(16,13,8,1) 0%, rgba(16,13,8,0.2) 100%);"></div>
+            
+            <div class="content-layer">
+                <h1 class="heading-font">Commissions</h1>
+                <p>Commissions are how the studio enters another house.</p>
+                <p>The brief arrives, the work is drawn, and the pieces are made for a particular space, occasion, or gathering.</p>
+                <p>The studio works across textile, metal, ceramic, wood, and surface applications — in small numbers and over longer timelines.</p>
+            </div>
+        </section>
+
+        <section style="background-color: var(--bg-mid); padding-top: 0;">
+            <div class="content-layer d-flex-split">
+                <div class="w-48">
+                    <h3 class="heading-font">Weddings and private events</h3>
+                    <p>Return gifts, welcome objects, table programmes, ritual objects — designed around a single occasion in a single house.</p>
+                    
+                    <h3 class="heading-font" style="margin-top: 3rem;">Corporate gifting</h3>
+                    <p>Considered gifting for senior teams, partners, and clients. Custom motifs, quiet packaging, and objects made to stay beyond the event.</p>
+                    
+                    <h3 class="heading-font" style="margin-top: 3rem;">Hospitality, interiors, and private commissions</h3>
+                    <p>Surfaces drawn for a defined room or programme — a hotel suite, a restaurant table, a residential bedroom, a private cycle of gifting.</p>
+                    <p>The brief is set with the architect, owner, or host.</p>
+                </div>
+                
+                <div class="w-42" style="background-color: var(--bg-dark); padding: 48px; border: 1px solid var(--divider);">
+                    <div class="process-flow">
+                        <p>Brief</p>
+                        <div class="arrow">↓</div>
+                        <p>Drawing and development<br>five to six weeks</p>
+                        <div class="arrow">↓</div>
+                        <p>Prototype and revision<br>four to six weeks</p>
+                        <div class="arrow">↓</div>
+                        <p>Production<br>four to six weeks</p>
+                        <div class="arrow">↓</div>
+                        <p>Delivery</p>
+                    </div>
+                    
+                    <p style="text-align: center; color: var(--text-muted); font-size: 15px; margin-top: 3rem;">
+                        Domestic and international projects<br>Pricing issued against confirmed brief<br>Lead times vary by scope
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         CONTACT / ENQUIRY
+         ================================================== -->
+    <div id="contact" class="page-view" data-bg="#100D08">
+        <section class="h-hero" style="padding-top: var(--nav-height-mob);">
+            <div class="atm-ground fade-right" style="background-image: url('dhyai_home_hero_jali-shadow-wide_01.jpg'); opacity: 0.5; background-position: left center;"></div>
+            <div class="atm-overlay" style="background: linear-gradient(to right, rgba(16,13,8,0.2) 0%, rgba(16,13,8,0.95) 60%);"></div>
+            
+            <div class="content-layer d-flex-split">
+                <div class="w-48">
+                    <h1 class="heading-font">Enquiry</h1>
+                    <p style="margin-bottom: 3rem;">To begin a conversation.<br>Write to the studio.</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <p class="heading-font" style="color: var(--accent-gold); margin-bottom: 0.5rem; font-size: 28px;">Dhyai Studio</p>
+                        <p>Devanahalli, Bengaluru</p>
+                        <br>
+                        <p>contact@dhyai.studio<br>WhatsApp +91 83685 44393</p>
+                        <p style="margin-top: 1rem;">dhyai.studio</p>
+                    </div>
+                </div>
+                
+                <div class="w-42">
+                    <form onsubmit="event.preventDefault(); alert('Message sent.');">
+                        <input type="text" placeholder="Name" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="text" placeholder="Subject">
+                        <textarea rows="4" placeholder="Message" required></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================================================
+         ROUTING SCRIPT
+         ================================================== -->
+    <script>
+        const pages = document.querySelectorAll('.page-view');
+        const navLinks = document.querySelectorAll('#nav-menu a');
+        
+        function routeTo(pageId) {
+            document.getElementById('nav-menu').classList.remove('active');
+            document.getElementById('mobile-menu-btn').classList.remove('active');
+            
+            let found = false;
+            pages.forEach(page => {
+                if (page.id === pageId) {
+                    page.classList.add('active');
+                    found = true;
+                    document.body.style.backgroundColor = page.getAttribute('data-bg') || '#100D08';
+                } else {
+                    page.classList.remove('active');
+                }
+            });
             
             if (!found) {
                 document.getElementById('home').classList.add('active');
-                document.body.style.backgroundColor = '#12100B';
+                document.body.style.backgroundColor = '#100D08';
+                pageId = 'home';
             }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if(link.getAttribute('onclick') === `routeTo('${pageId}')`) {
+                    link.classList.add('active-link');
+                }
+            });
             
-            // Hash and positioning
             window.location.hash = pageId;
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
@@ -1088,16 +800,6 @@
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             this.classList.toggle('active');
             document.getElementById('nav-menu').classList.toggle('active');
-        });
-
-        // Header Darkness
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
         });
     </script>
 </body>
