@@ -3,44 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Material | DHYAI</title>
+    <title>MATERIAL | DHYAI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
-    <header><nav class="nav-links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a></nav><div class="hamburger" onclick="toggleMenu()">☰</div></header>
-    <div class="mobile-menu"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a><div class="hamburger" style="top: 20px;" onclick="toggleMenu()">✕</div></div>
 
-    <section style="padding-top: 150px;">
-        <div class="container">
-            <h1 style="text-align: center; margin-bottom: 80px;">Material & Process</h1>
-            
-            <div class="grid-2" style="align-items: center; margin-bottom: 100px;">
-                <div>
-                    <h2>Materials</h2>
-                    <p>Understanding the inherent nature of brass, fabric, and wood before forcing a form onto them.</p>
-                </div>
-                <div class="img-overlay"><img src="assets/mat-craft.jpg" alt="Craft"></div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="studio.html">STUDIO</a></li>
+            <li><a href="material.html">MATERIAL</a></li>
+            <li><a href="studies.html">STUDIES</a></li>
+            <li><a href="objects.html">OBJECTS</a></li>
+            <li><a href="commissions.html">COMMISSIONS</a></li>
+            <li><a href="enquiry.html">ENQUIRY</a></li>
+        </ul>
+    </nav>
+
+    <section style="margin-top: var(--nav-height);">
+        <div class="container content-width grid-2">
+            <div>
+                <h1>Textiles</h1>
+                <p>DHYAI works with pure cotton, muslin, and silk. The fabrics are chosen for how they drape, how they hold shadows, and how they soften with lived experience.</p>
+                <p>The current studies are families — bedsheets, bedcovers, dohars, table covers, table linen sets — developed through repetition, spacing, and use.</p>
             </div>
-
-            <div class="grid-2" style="align-items: center; margin-bottom: 100px;">
-                <div class="img-overlay" style="order: 1;"><img src="assets/mat-stitching.jpg" alt="Stitching"></div>
-                <div style="order: 2;">
-                    <h2>Making</h2>
-                    <p>The slow repetition of the hand. Stitching and joining as deliberate acts of creation.</p>
+            <div class="stack-img">
+                <img src="dhyai-material-textile-shadow-fall.jpg" alt="Textiles">
+                <div class="grid-2" style="gap: 20px;">
+                    <img src="dhyai_process_blockprint-yellow-tray_02.jpg" alt="Process">
+                    <img src="dhyai_process_label-stitching-detail_01.jpg" alt="Stitching">
                 </div>
-            </div>
-
-            <div class="grid-2" style="align-items: center; margin-bottom: 100px;">
-                <div>
-                    <h2>Finish & Patina</h2>
-                    <p>Metal finishing and fabric handling that anticipates age. The object is not finished until it has been used.</p>
-                </div>
-                <div class="img-overlay"><img src="assets/mat-patina.jpg" alt="Metal finishing"></div>
             </div>
         </div>
     </section>
 
-    <footer><div class="container"><h2>DHYAI</h2><p class="muted">A unit of GDB Advisors</p></div></footer>
-    <script src="script.js"></script>
+    <section>
+        <div class="container content-width grid-2">
+            <div class="stack-img">
+                <img src="dhyai-studies-brass-kalash-lineup.png" alt="Cast Brass">
+                <div class="grid-2" style="gap: 20px;">
+                    <img src="dhyai_process_brass_lathe_01.jpg" alt="Lathe">
+                    <img src="dhyai-material-brass-kalash-shadow.jpg" alt="Shadow">
+                </div>
+            </div>
+            <div>
+                <h1>Cast Brass</h1>
+                <p>The brass develops a living patina, where the surface deepens with use. And the weight of the metal is essential to its presence in a room.</p>
+                <p>Brass pieces are sand-cast, lathe-finished, and satin-brushed.</p>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
