@@ -51,7 +51,7 @@
             font-family: var(--font-body);
             font-weight: 400;
             font-size: clamp(16px, 4vw, 18px);
-            line-height: 1.8; /* Constraint: 1.7-1.9 */
+            line-height: 1.8;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
@@ -89,7 +89,7 @@
         .nav-label { font-size: 14px; letter-spacing: 0.22em; opacity: 0.72; transition: opacity 0.4s; }
         .small-label { font-size: 22px; letter-spacing: 0.12em; color: var(--text-bone); }
 
-        p { max-width: 65ch; margin-bottom: 1.5rem; } /* Constraint: 60-70 characters */
+        p { max-width: 65ch; margin-bottom: 1.5rem; }
         p:last-child { margin-bottom: 0; }
 
         a { color: inherit; text-decoration: none; transition: color 0.4s ease, opacity 0.4s ease; cursor: pointer; }
@@ -103,10 +103,9 @@
             width: 100%;
             height: auto;
             display: block;
-            object-fit: contain; /* Constraint: Max 15% crop, prioritize product visibility */
+            object-fit: contain;
         }
         
-        /* Image labeling matching the mockups */
         .img-label {
             font-family: var(--font-body);
             color: var(--text-bone);
@@ -117,11 +116,11 @@
         .light-theme .img-label { color: var(--text-deep); }
 
         .textile-img {
-            filter: brightness(1.15) contrast(1.02); /* Constraint: +0.4 to +0.8 stops */
+            filter: brightness(1.15) contrast(1.02);
         }
 
         .brass-obj {
-            min-height: 40vh; /* Constraint: Min 40% viewport */
+            min-height: 40vh;
             max-width: 70%;
             margin: 0 auto;
             display: block;
@@ -181,7 +180,6 @@
         
         .container { max-width: 1440px; margin: 0 auto; position: relative; z-index: 2; width: 100%; }
         
-        /* STRICT 12-COLUMN GRID SYSTEM */
         .grid-12 {
             display: grid; 
             grid-template-columns: 1fr; 
@@ -222,16 +220,13 @@
            SPECIFIC SECTIONS
            -------------------------------------------------- */
         
-        /* HOME: Hero */
         .home-hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .hero-logo { width: 100%; max-width: 180px; margin-bottom: 2rem; position: relative; z-index: 4; }
         @media (min-width: 768px) { .hero-logo { max-width: 250px; } }
         .hero-radial { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(8,6,4,0.42) 0%, transparent 55%); z-index: 2; }
 
-        /* HOME: Quotes Spread */
         .quote-scatter { position: relative; min-height: 50vh; display: flex; flex-direction: column; gap: 40px; justify-content: center; align-items: center; text-align: center;}
         
-        /* PREVIEW SECTION: The Study Wall */
         .preview-section { background-color: var(--bg-beige); color: var(--text-deep); padding-bottom: 120px; }
         .preview-section h1, .preview-section h2, .preview-section h3, .preview-section .nav-label, .preview-section .title-font { color: var(--text-deep); }
         .light-theme { background-color: var(--bg-beige); color: var(--text-deep); }
@@ -309,26 +304,28 @@
         <section style="min-height: 54vh; background-color: var(--bg-dark); display: flex; align-items: center;">
             <div class="container grid-12">
                 <div class="col-span-4">
-                    <h2 class="title-font" style="font-size: 26px;">Object gravity</h2>
+                    <h2 class="title-font" style="font-size: 26px;">Gravity</h2>
                     <p>A piece belongs without justification. It carries its own weight in a room.</p>
                 </div>
                 <div class="col-span-4">
-                    <h2 class="title-font" style="font-size: 26px;">Objects through time</h2>
-                    <p>The piece moves across homes and decades without becoming obsolete.</p>
+                    <h2 class="title-font" style="font-size: 26px;">Endurance</h2>
+                    <p>A piece moves across homes and decades without becoming obsolete.</p>
                 </div>
                 <div class="col-span-4">
-                    <h2 class="title-font" style="font-size: 26px;">Object coherence</h2>
+                    <h2 class="title-font" style="font-size: 26px;">Coherence</h2>
                     <p>Use, ageing, and repetition resolve into quiet certainty.</p>
                 </div>
             </div>
         </section>
 
         <!-- REDUCED QUOTE -->
-        <section style="padding: 120px 24px; background-color: var(--bg-warm); overflow: hidden;">
+        <section class="home-quotes section-pad">
             <div class="bg-img" style="background-image: url('dhyai-jaali-shadow-folded-textile.jpg'); opacity: 0.25;"></div>
             <div class="container quote-scatter">
-                <div class="italic-quote" style="font-size: 32px; max-width: 720px; color: var(--accent-gold);">“There is an experience.<br>Objects happen inside it.”</div>
-                <div class="italic-quote" style="font-size: 24px; max-width: 720px;">“The object should feel like it belongs to time.”</div>
+                <div style="max-width: 620px; text-align: center; position: relative; z-index: 2;">
+                    <p style="color: var(--text-bone);">Nothing seeks your attention.</p>
+                    <p style="color: var(--text-bone);">And then you notice something — not because it announced itself, but because it exists and you arrived at it.</p>
+                </div>
             </div>
         </section>
 
@@ -368,8 +365,8 @@
         
         <!-- FOOTER -->
         <footer style="background: var(--bg-dark); padding: 80px 24px; text-align: center;">
-            <div class="title-font" style="font-size: 20px; letter-spacing: 0.12em; margin-bottom: 12px; color: var(--text-bone);">DHYAI</div>
-            <div class="title-font" style="font-size: 16px; margin-bottom: 12px; color: var(--text-muted);">ध्यै</div>
+            <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" style="height: 18px; margin: 0 auto 12px auto; filter: brightness(1.2);">
+            <div class="title-font" style="font-size: 16px; margin-bottom: 8px;">ध्यै</div>
             <div class="nav-label" style="font-size: 12px; color: var(--text-muted); opacity: 0.6; letter-spacing: 0.12em;">A UNIT OF GDB ADVISORS</div>
         </footer>
     </div>
@@ -378,7 +375,7 @@
          STUDIO PAGE
          ================================================== -->
     <div id="studio" class="page" style="background-color: var(--bg-warm);">
-        <section class="section-pad">
+        <section class="section-pad" style="padding-top: 140px;">
             <div class="container grid-12">
                 <div class="col-span-12 page-header">
                     <h1>The Studio</h1>
@@ -392,7 +389,7 @@
                 </div>
                 <div class="col-span-7 grid-12">
                     <div class="col-span-12">
-                        <img src="dhyai-jaali-shadow-folded-textile.jpg" alt="Fabric handling">
+                        <img src="dhyai_studio_stacking_atmosphere-6.jpg" alt="Fabric handling">
                     </div>
                     <div class="col-span-6">
                         <img src="dhyai_process_blockprint-yellow-tray_01.jpg" alt="Block printing">
@@ -409,7 +406,7 @@
          MATERIAL PAGE
          ================================================== -->
     <div id="material" class="page">
-        <section class="section-pad" style="padding-bottom: 40px;">
+        <section class="section-pad" style="padding-top: 140px; padding-bottom: 40px;">
             <div class="container page-header">
                 <h1>Material</h1>
                 <p class="title-font" style="font-size: 28px; color: var(--accent-gold);">Matter holding time.</p>
@@ -468,7 +465,7 @@
          STUDIES LANDING PAGE
          ================================================== -->
     <div id="studies" class="page light-theme">
-        <section class="section-pad">
+        <section class="section-pad" style="padding-top: 140px;">
             <div class="container grid-12">
                 <div class="col-span-12 page-header">
                     <h1>Studies</h1>
@@ -494,7 +491,7 @@
 
     <!-- STHANA -->
     <div id="sthana" class="page light-theme">
-        <section class="section-pad">
+        <section class="section-pad" style="padding-top: 140px;">
             <div class="container grid-12">
                 <div class="col-span-12">
                     <a onclick="routeTo('studies')" class="back-link nav-label" style="color: var(--text-deep);">← Back to Studies</a>
@@ -533,7 +530,7 @@
 
     <!-- STHITI -->
     <div id="sthiti" class="page light-theme">
-        <section class="section-pad">
+        <section class="section-pad" style="padding-top: 140px;">
             <div class="container grid-12">
                 <div class="col-span-12">
                     <a onclick="routeTo('studies')" class="back-link nav-label" style="color: var(--text-deep);">← Back to Studies</a>
@@ -570,7 +567,7 @@
 
     <!-- PUNAR -->
     <div id="punar" class="page light-theme">
-        <section class="section-pad">
+        <section class="section-pad" style="padding-top: 140px;">
             <div class="container grid-12">
                 <div class="col-span-12">
                     <a onclick="routeTo('studies')" class="back-link nav-label" style="color: var(--text-deep);">← Back to Studies</a>
@@ -607,19 +604,19 @@
          OBJECTS LANDING PAGE
          ================================================== -->
     <div id="objects" class="page" style="background-color: var(--bg-warm);">
-        <section class="section-pad">
+        <section class="section-pad" style="padding-top: 140px;">
             <div class="container page-header">
                 <h1>Objects</h1>
                 <p class="nav-label" style="font-size: 16px;">BRASS</p>
             </div>
             <div class="container grid-12">
                 <a onclick="routeTo('kalash')" class="preview-card col-span-6">
-                    <img src="dhyai_studies_brass-vessel-front-room_01.jpg" alt="Kālāsh" style="background: var(--bg-dark); object-fit: contain;">
-                    <h3 style="margin-top: 20px;">Kālāsh</h3>
+                    <img src="dhyai_studies_brass-vessel-front-room_01.jpg" alt="Kālāsh" style="background: var(--bg-dark); object-fit: contain; min-height: 40vh;">
+                    <h3 style="margin-top: 20px; text-align: center;">Kālāsh</h3>
                 </a>
                 <a onclick="routeTo('pebble-jar')" class="preview-card col-span-6">
-                    <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jār Set" style="background: var(--bg-dark); object-fit: contain;">
-                    <h3 style="margin-top: 20px;">Pebble Jār Set</h3>
+                    <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jār Set" style="background: var(--bg-dark); object-fit: contain; min-height: 40vh;">
+                    <h3 style="margin-top: 20px; text-align: center;">Pebble Jār Set</h3>
                 </a>
             </div>
         </section>
@@ -627,7 +624,7 @@
 
     <!-- KALASH -->
     <div id="kalash" class="page">
-        <section class="section-pad">
+        <section class="section-pad" style="padding-top: 140px;">
             <div class="container grid-12">
                 <div class="col-span-12">
                     <a onclick="routeTo('objects')" class="back-link nav-label">← Back to Objects</a>
@@ -641,7 +638,7 @@
                     <p>Water in brass changes.<br>The vessel holds that change.</p>
                     <p>A full belly, a cast shoulder, a steadiness that requires no explanation.</p>
                     <br><br>
-                    <a onclick="routeTo('contact')" class="nav-label" style="color: var(--accent-gold);">Enquire about Kālāsh →</a>
+                    <a onclick="routeTo('contact')" class="nav-label" style="color: var(--accent-gold);">Enquire about Kālāsh → CONTACT</a>
                 </div>
                 <div class="col-span-8 grid-12">
                     <div class="col-span-12">
@@ -657,28 +654,22 @@
 
     <!-- PEBBLE JAR -->
     <div id="pebble-jar" class="page">
-        <section class="section-pad">
+        <section class="section-pad" style="padding-top: 140px;">
             <div class="container grid-12">
                 <div class="col-span-12">
                     <a onclick="routeTo('objects')" class="back-link nav-label">← Back to Objects</a>
                 </div>
                 <div class="col-span-4">
                     <h1>Pebble Jār Set</h1>
-                    <p>Two jars that sit in the hand, like pebbles taken from a riverbank.</p>
-                    <p>The tray is the flat rock one carries home to place the pebbles.</p>
+                    <p>Two jars that sit in the hand, like pebbles taken from a riverbank. The tray is the flat rock one carries home to place the pebbles.</p>
                     <p>Solid brass. Satin-brushed. Made for table use — salt, condiments, dry spices, small offerings.</p>
-                    <p>A pebble from a riverbed — held in the hand once, understood completely.</p>
                     <p>The patina is the accumulation of every time the piece was picked up.</p>
                     <br><br>
-                    <a onclick="routeTo('contact')" class="nav-label" style="color: var(--accent-gold);">Enquire about Pebble Jār Set →</a>
+                    <a onclick="routeTo('contact')" class="nav-label" style="color: var(--accent-gold);">Enquire about Pebble Jār Set → CONTACT</a>
                 </div>
-                <div class="col-span-8 grid-12">
-                    <div class="col-span-12">
-                        <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jar" style="background: var(--bg-warm); object-fit: contain;">
-                    </div>
-                    <div class="col-span-12">
-                        <img src="dhyai_studies_pebble_js_3.png" alt="Pebble Jar Tray" style="background: var(--bg-warm); object-fit: contain;">
-                    </div>
+                <div class="col-span-8" style="background: var(--bg-warm); padding: 5vh 0;">
+                    <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jar" class="brass-obj">
+                    <img src="dhyai_studies_pebble_js_3.png" alt="Pebble Jar Tray" class="brass-obj" style="margin-top: var(--grid-gutter-desktop);">
                 </div>
             </div>
         </section>
