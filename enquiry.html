@@ -3,50 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHYAI | Contact</title>
+    <title>Enquiry | DHYAI</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: #080806;">
-    <header>
-        <div class="nav-inner">
-            <a href="index.html" class="logo"><img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI"></a>
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="studio.html">Studio</a>
-                <a href="material.html">Material</a>
-                <a href="studies.html">Studies</a>
-                <a href="objects.html">Objects</a>
-                <a href="commissions.html">Commissions</a>
-                <a href="enquiry.html" style="color: var(--accent-gold);">Contact</a>
-            </nav>
-        </div>
-    </header>
+<body class="light-theme">
+    <header><nav class="nav-links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a></nav><div class="hamburger" onclick="toggleMenu()">☰</div></header>
+    <div class="mobile-menu"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a><div class="hamburger" style="top: 20px;" onclick="toggleMenu()">✕</div></div>
 
-    <section class="hero" style="background-image: url('dhyai_home_hero_jali-shadow-wide_01.jpg');">
-        <div class="hero-overlay"></div>
-        <div class="container grid-2" style="width: 100%; align-items: flex-end;">
+    <section style="padding-top: 150px; min-height: 80vh;">
+        <div class="container grid-2">
             <div>
                 <h1>Enquiry</h1>
-                <p>To begin a conversation.<br>Write to the studio.</p>
-                <div style="margin-top: 3rem;">
-                    <p class="serif" style="font-size: 24px; color: var(--accent-gold); margin-bottom: 0.5rem;">Dhyai Studio</p>
-                    <p>Devanahalli, Bengaluru</p>
-                    <br>
-                    <p>contact@dhyai.studio<br>WhatsApp +91 83685 44393</p>
-                    <p style="margin-top: 1rem;">dhyai.studio</p>
-                </div>
+                <br>
+                <h3 class="accent">Dhyai Studio</h3>
+                <p>Devanahalli, Bengaluru</p>
+                <p>contact@dhyai.studio<br>WhatsApp</p>
+                <p>dhyai.studio</p>
             </div>
             
-            <div style="background-color: rgba(11,10,8,0.6); padding: 48px;">
+            <div>
                 <form action="#" method="POST">
-                    <input type="text" placeholder="Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <input type="text" placeholder="Subject">
-                    <textarea rows="3" placeholder="Message" required></textarea>
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="subject" placeholder="Subject" required>
+                    <textarea name="message" rows="5" placeholder="Message" required></textarea>
                     <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <footer><div class="container"><h2>DHYAI</h2><p class="muted">A unit of GDB Advisors</p></div></footer>
+    <script src="script.js"></script>
 </body>
 </html>
