@@ -2,749 +2,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DHYAI | Material Practice</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Petrona:ital,wght@0,400;1,400&family=Source+Sans+3:wght@400&display=swap" rel="stylesheet">
-    <style>
-        /* ==================================================
-           GLOBAL COLOR & TYPOGRAPHY SYSTEM
-           ================================================== */
-        :root {
-            /* Colors */
-            --bg-dark: #0A0906;
-            --bg-warm: #17130D;
-            --bg-beige: #CBB98D;
-            --bg-textile-1: #E7DDC8; /* Strict Constraint Palette */
-            
-            --text-bone: #D8C7AA;
-            --text-muted: #CDBB9B;
-            --accent-gold: #BE8233;
-            --text-deep: #17130D;
-            --text-deep-muted: rgba(23, 19, 13, 0.72);
-            
-            /* Sizing & Grids */
-            --nav-height-desk: 96px;
-            --nav-height-mob: 72px;
-            --grid-gutter-desktop: clamp(32px, 4vw, 64px);
-            --grid-gutter-mobile: 24px;
-            --pad-desk: 96px 6vw;
-            --pad-mob: 72px 24px;
-        }
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        html, body {
-            width: 100%;
-            background-color: var(--bg-dark);
-            color: var(--text-muted);
-            font-family: 'Petrona', serif;
-            font-weight: 400;
-            font-size: clamp(16px, 4vw, 18px);
-            line-height: 1.8; /* Constraint: 1.7 - 1.9 */
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        @media (min-width: 768px) {
-            html, body { font-size: clamp(17px, 1.2vw, 19px); }
-        }
-        /* Typography Hierarchy */
-        h1, h2, h3, .title-font {
-            font-family: 'Marcellus', serif;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            color: var(--text-bone);
-        }
-        h1 { font-size: 36px; margin-bottom: 1.5rem; line-height: 1.1; }
-        h2 { font-size: 28px; margin-bottom: 1.5rem; }
-        h3 { font-size: 24px; margin-bottom: 1rem; }
-        @media (min-width: 768px) {
-            h1 { font-size: 52px; }
-            h2 { font-size: 34px; }
-            h3 { font-size: 28px; }
-        }
-        .nav-label, .small-label, .back-link {
-            font-family: 'Source Sans 3', sans-serif;
-            font-weight: 400;
-            text-transform: uppercase;
-        }
-        
-        .nav-label { font-size: 14px; letter-spacing: 0.18em; color: var(--text-bone); opacity: 0.75; }
-        .small-label { font-size: 22px; letter-spacing: 0.12em; color: var(--text-bone); }
-        
-        p { max-width: 65ch; margin-bottom: 1.5rem; color: var(--text-muted); } /* Constraint: 60-70 characters */
-        p:last-child { margin-bottom: 0; }
-        
-        a { color: inherit; text-decoration: none; transition: color 0.4s ease, opacity 0.4s ease; cursor: pointer; }
-        
-        /* ==================================================
-           GLOBAL IMAGE RULES
-           ================================================== */
-        img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain; /* Constraint: Never crop > 15% */
-        }
-
-        .textile-img {
-            filter: brightness(1.15) contrast(1.02); /* Constraint: Brightness +0.4 to +0.8 stops */
-        }
-
-        .brass-obj {
-            min-height: 40vh; /* Constraint: Min 40% viewport */
-            max-width: 70%;
-            margin: 0 auto;
-            display: block;
-        }
-
-        /* ==================================================
-           STRICT 12-COLUMN GRID SYSTEM
-           ================================================== */
-        .grid-12 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--grid-gutter-mobile);
-            width: 100%;
-        }
-        @media (min-width: 768px) {
-            .grid-12 {
-                grid-template-columns: repeat(12, 1fr);
-                gap: var(--grid-gutter-desktop);
-                align-items: start;
-            }
-        }
-
-        .col-span-3 { grid-column: span 3; }
-        .col-span-4 { grid-column: span 4; }
-        .col-span-6 { grid-column: span 6; }
-        .col-span-8 { grid-column: span 8; }
-        .col-span-12 { grid-column: span 12; }
-
-        @media (max-width: 768px) {
-            .col-span-3, .col-span-4, .col-span-6, .col-span-8, .col-span-12 {
-                grid-column: span 1;
-            }
-        }
-
-        .section-pad { padding: 80px 24px; position: relative; }
-        @media (min-width: 768px) { .section-pad { padding: 120px 6vw; } }
-        .container { max-width: 1280px; margin: 0 auto; position: relative; z-index: 2; width: 100%; }
-
-        /* ==================================================
-           NAVIGATION
-           ================================================== */
-        header {
-            position: fixed; top: 0; left: 0; width: 100%;
-            height: var(--nav-height-mob);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 999;
-            background: linear-gradient(to bottom, rgba(10,9,6,0.9) 0%, rgba(10,9,6,0) 100%);
-            transition: background-color 0.4s ease;
-        }
-        @media (min-width: 768px) { header { height: var(--nav-height-desk); } }
-        header.scrolled { background-color: rgba(10,9,6,0.95); }
-        .nav-links { display: flex; gap: 32px; align-items: center; }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-gold); opacity: 1; }
-        .menu-toggle {
-            display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1000;
-            position: absolute; right: 24px;
-        }
-        .menu-toggle span { width: 28px; height: 1px; background-color: var(--text-bone); transition: 0.3s; }
-        @media (max-width: 768px) {
-            header { justify-content: flex-start; padding-left: 24px; }
-            .nav-links {
-                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-                background-color: var(--bg-dark); flex-direction: column;
-                justify-content: center; align-items: center; gap: 40px;
-                transition: right 0.4s ease;
-            }
-            .nav-links.nav-open { right: 0; }
-            .menu-toggle { display: flex; }
-            .menu-toggle.nav-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-            .menu-toggle.nav-open span:nth-child(2) { opacity: 0; }
-            .menu-toggle.nav-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-        }
-
-        /* ==================================================
-           PAGE ROUTING & UTILS
-           ================================================== */
-        .page { display: none; opacity: 0; animation: fadeIn 0.8s forwards ease; min-height: 100vh; }
-        .page.active { display: block; }
-        @keyframes fadeIn { to { opacity: 1; } }
-
-        .bg-img {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center; z-index: 0;
-        }
-
-        /* ==================================================
-           HOME SPECIFIC SECTIONS
-           ================================================== */
-        .home-hero {
-            height: 100vh; width: 100%; position: relative;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background-color: var(--bg-dark);
-        }
-        .home-hero .bg-img { background-image: url('dhyai_home_hero_jali-shadow-wide_01.jpg'); opacity: 0.85; }
-        .home-hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(10,9,6,0.3) 0%, rgba(10,9,6,0.8) 80%);
-            z-index: 1;
-        }
-        .hero-content { position: relative; z-index: 2; text-align: center; }
-        .hero-logo { width: 100%; max-width: 280px; margin-bottom: 24px; filter: brightness(1.15); }
-        
-        .home-opening { min-height: 85vh; display: flex; align-items: center; background-color: var(--bg-warm); }
-        .home-opening .bg-img { background-image: url('dhyai_home_transition_jali-shadow-vertical_01.jpg'); background-position: left center; opacity: 0.6; }
-        .home-opening::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(23,19,13,0.2) 0%, rgba(23,19,13,0.9) 70%); z-index: 1;
-        }
-        
-        .home-quotes { background-color: var(--bg-dark); overflow: hidden; padding: 120px 24px; }
-        .home-quotes .bg-img { background-image: url('dhyai-jaali-shadow-folded-textile.jpg'); opacity: 0.2; }
-
-        .home-beige { background-color: var(--bg-beige); color: var(--text-deep); }
-        .home-beige h2, .home-beige h3 { color: var(--text-deep); }
-        .home-beige .nav-label { color: var(--text-deep); font-weight: 600; }
-        
-        .preview-card { display: block; text-decoration: none; transition: transform 0.4s ease; }
-        .preview-card:hover { transform: scale(1.02); }
-        .preview-card img { box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-        
-        footer { background-color: var(--bg-dark); padding: 80px 24px; text-align: center; }
-
-        /* ==================================================
-           FORMS & INTERFACE
-           ================================================== */
-        .back-link { font-size: 12px; margin-bottom: 40px; display: inline-block; transition: 0.3s; }
-        .back-link:hover { color: var(--text-bone); }
-        .process-flow { font-size: 18px; text-align: center; }
-        .process-flow .arrow { color: var(--accent-gold); margin: 16px 0; font-size: 20px; }
-        input, textarea {
-            width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(216,199,170,0.3);
-            color: var(--text-bone); font-family: 'Petrona', serif; font-size: 18px; padding: 12px 0; margin-bottom: 40px;
-        }
-        input:focus, textarea:focus { outline: none; border-bottom-color: var(--accent-gold); }
-        button {
-            background: transparent; color: var(--accent-gold); border: 1px solid var(--accent-gold);
-            padding: 16px 48px; font-family: 'Source Sans 3', sans-serif; letter-spacing: 0.18em;
-            font-size: 14px; text-transform: uppercase; cursor: pointer; transition: 0.3s;
-        }
-        button:hover { background: var(--bg-warm); color: var(--text-bone); }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHYAI | Studio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <!-- NAVIGATION -->
-    <header id="main-header">
-        <div class="menu-toggle" id="menu-toggle" onclick="toggleNav()">
-            <span></span><span></span><span></span>
-        </div>
-        <nav class="nav-links nav-label" id="nav-links">
-            <a onclick="routeTo('home')" id="nav-home" class="active">HOME</a>
-            <a onclick="routeTo('studio')" id="nav-studio">STUDIO</a>
-            <a onclick="routeTo('material')" id="nav-material">MATERIAL</a>
-            <a onclick="routeTo('studies')" id="nav-studies">STUDIES</a>
-            <a onclick="routeTo('objects')" id="nav-objects">OBJECTS</a>
-            <a onclick="routeTo('commissions')" id="nav-commissions">COMMISSIONS</a>
-            <a onclick="routeTo('contact')" id="nav-contact">CONTACT</a>
+<body class="dark-theme">
+
+    <header>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="studio.html">Studio</a>
+            <a href="material.html">Material</a>
+            <a href="studies.html">Studies</a>
+            <a href="objects.html">Objects</a>
+            <a href="commissions.html">Commissions</a>
+            <a href="enquiry.html">Enquiry</a>
         </nav>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
     </header>
 
-    <!-- ==================================================
-         HOME PAGE
-         ================================================== -->
-    <div id="home" class="page active">
-        <!-- SECTION 1: HERO -->
-        <section class="home-hero">
-            <div class="bg-img"></div>
-            <div class="home-hero-overlay"></div>
-            <div class="hero-content">
-                <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" class="hero-logo">
-                <div class="title-font" style="font-size: 28px; margin-bottom: 12px;">ध्यै</div>
-                <div style="font-size: 22px; color: var(--text-bone);">To fix the mind upon</div>
-            </div>
-        </section>
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="studio.html">Studio</a>
+        <a href="material.html">Material</a>
+        <a href="studies.html">Studies</a>
+        <a href="objects.html">Objects</a>
+        <a href="commissions.html">Commissions</a>
+        <a href="enquiry.html">Enquiry</a>
+        <div class="hamburger" style="top: 20px;" onclick="toggleMenu()">✕</div>
+    </div>
 
-        <!-- SECTION 2: OPENING LINES -->
-        <section class="home-opening section-pad">
-            <div class="bg-img"></div>
-            <div class="container grid-12">
-                <div class="col-span-8 col-offset-2" style="position: relative; z-index: 3;">
-                    <p>A stone from a riverbed sits on the shelf for years.</p>
-                    <p>Pieces that settle into life slowly, meant to live with.</p>
-                </div>
-            </div>
-        </section>
+    <section class="hero-full img-overlay">
+        <img src="assets/home-hero.jpg" class="hero-bg bg-blur" alt="Studio Atmosphere">
+        <div class="container" style="z-index: 2;">
+            <h1>DHYAI</h1>
+            <p class="accent" style="font-size: 24px;">ध्यै</p>
+            <p>To fix the mind upon</p>
+        </div>
+    </section>
 
-        <!-- SECTION 3: PRINCIPLES -->
-        <section class="section-pad" style="background-color: var(--bg-dark);">
-            <div class="container grid-12">
-                <div class="col-span-4">
-                    <h2>Gravity</h2>
-                    <p>A piece belongs without justification. It carries its own weight in a room.</p>
-                </div>
-                <div class="col-span-4">
-                    <h2>Endurance</h2>
-                    <p>The piece moves across homes and decades without becoming obsolete.</p>
-                </div>
-                <div class="col-span-4">
-                    <h2>Coherence</h2>
-                    <p>Use, ageing, and repetition resolve into quiet certainty.</p>
-                </div>
-            </div>
-        </section>
+    <section class="section-alt">
+        <div class="container text-block-center">
+            <p>A stone from a riverbed sits on the shelf for years.</p>
+            <p>Objects that settle into life slowly are,</p>
+            <p>Time, embodied in material.<br>Objects meant to live with.</p>
+        </div>
+    </section>
 
-        <!-- SECTION 4: REFINED QUOTE -->
-        <section class="home-quotes section-pad">
-            <div class="bg-img"></div>
-            <div class="container grid-12">
-                <div class="col-span-8" style="text-align: center; margin: 0 auto; position: relative; z-index: 2;">
-                    <p style="color: var(--text-bone);">Nothing seeks your attention.</p>
-                    <p style="color: var(--text-bone);">And then you notice something — not because it announced itself, but because it exists and you arrived at it.</p>
-                </div>
+    <section>
+        <div class="container grid-3 text-block-center">
+            <div>
+                <h2>Object gravity</h2>
             </div>
-        </section>
+            <div>
+                <h2>Objects through time</h2>
+            </div>
+            <div>
+                <h2>Object coherence</h2>
+            </div>
+        </div>
+    </section>
 
-        <!-- SECTION 5: STUDIES & OBJECTS PREVIEW -->
-        <section class="home-beige section-pad">
-            <div class="container grid-12">
-                <div class="col-span-12 small-label" style="margin-bottom: 24px;">STUDIES</div>
-                <a onclick="routeTo('sthana')" class="preview-card col-span-4">
-                    <img src="dhyai_sthana_studies_flatlay_bc_1.jpg" alt="Sthāna">
-                    <h3 style="margin-top: 20px;">Sthāna</h3>
+    <section class="section-alt">
+        <div class="container text-block-center">
+            <div class="quote-block">
+                "There is an experience.<br>Objects happen inside it."
+            </div>
+            <div class="quote-block">
+                "The object should feel like it belongs to time."
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container grid-2">
+            <div>
+                <h2 style="text-align: center; margin-bottom: 40px;">Studies</h2>
+                <a href="sthana.html" class="img-overlay hover-zoom" style="margin-bottom: 20px;">
+                    <img src="assets/sthana-thumb.jpg" alt="Sthana">
+                    <p style="text-align: center;">Sthāna</p>
                 </a>
-                <a onclick="routeTo('sthiti')" class="preview-card col-span-4">
-                    <img src="dhyai_sthiti_studies_flatlay_bc_2.jpg" alt="Sthiti">
-                    <h3 style="margin-top: 20px;">Sthiti</h3>
+                <a href="sthiti.html" class="img-overlay hover-zoom" style="margin-bottom: 20px;">
+                    <img src="assets/sthiti-thumb.jpg" alt="Sthiti">
+                    <p style="text-align: center;">Sthiti</p>
                 </a>
-                <a onclick="routeTo('punar')" class="preview-card col-span-4">
-                    <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Punār">
-                    <h3 style="margin-top: 20px;">Punār</h3>
+                <a href="punar.html" class="img-overlay hover-zoom">
+                    <img src="assets/punar-thumb.jpg" alt="Punar">
+                    <p style="text-align: center;">Punar</p>
                 </a>
             </div>
-
-            <div class="container grid-12" style="margin-top: 80px;">
-                <div class="col-span-12 small-label" style="margin-bottom: 24px;">OBJECTS / METAL STUDIES</div>
-                <a onclick="routeTo('pebble-jar')" class="preview-card col-span-6">
-                    <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jār Set" style="background: var(--bg-dark);">
-                    <h3 style="margin-top: 20px;">Pebble Jār Set</h3>
+            <div>
+                <h2 style="text-align: center; margin-bottom: 40px;">Objects</h2>
+                <a href="kalash.html" class="img-overlay hover-zoom" style="margin-bottom: 20px;">
+                    <img src="assets/kalash-thumb.jpg" alt="Kalash">
+                    <p style="text-align: center;">Kalash</p>
                 </a>
-                <a onclick="routeTo('kalash')" class="preview-card col-span-6">
-                    <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kālāsh" style="background: var(--bg-dark);">
-                    <h3 style="margin-top: 20px;">Kālāsh</h3>
-                </a>
-            </div>
-        </section>
-        
-        <!-- FOOTER -->
-        <footer>
-            <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" style="height: 18px; margin: 0 auto 12px auto; filter: brightness(1.2);">
-            <div class="title-font" style="font-size: 16px; margin-bottom: 8px;">ध्यै</div>
-            <div class="nav-label" style="font-size: 11px;">Material expression of lived memory.</div>
-        </footer>
-    </div>
-
-    <!-- ==================================================
-         STUDIO PAGE
-         ================================================== -->
-    <div id="studio" class="page" style="background-color: var(--bg-warm);">
-        <section class="section-pad" style="padding-top: 140px;">
-            <div class="container grid-12">
-                <div class="col-span-12">
-                    <h1>The Studio</h1>
-                </div>
-                <div class="col-span-4">
-                    <p>DHYAI is a material and surface design practice based in Bengaluru. It works across pieces, textiles, and material studies for homes, interiors, private events, gifting, and hospitality.</p>
-                    <p>The name ध्यै is Sanskrit — to fix the mind upon.</p>
-                    <p>The work is produced in small numbers, by hand, in workshops the studio has chosen to work with over time. Nothing is hurried.</p>
-                </div>
-                <div class="col-span-8">
-                    <img src="dhyai_process_blockprint-yellow-tray_01.jpg" alt="Block printing" style="margin-bottom: 24px;">
-                    <div class="grid-12">
-                        <div class="col-span-6"><img src="dhyai-process-block-printing.jpg" alt="Textile handling"></div>
-                        <div class="col-span-6"><img src="dhyai_process_label-stitching-detail_01.jpg" alt="Label stitching"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ==================================================
-         MATERIAL PAGE
-         ================================================== -->
-    <div id="material" class="page">
-        <section class="section-pad" style="padding-top: 140px; padding-bottom: 40px;">
-            <div class="container">
-                <h1>Material</h1>
-            </div>
-        </section>
-        
-        <!-- Textile -->
-        <section class="section-pad" style="padding-top: 0;">
-            <div class="container grid-12">
-                <div class="col-span-4">
-                    <h2>Textile</h2>
-                    <p>DHYAI works with pure cotton, muslin, and silk. Fabrics are chosen for how they drape, hold shadows, and soften with lived experience.</p>
-                    <p>The current studies are not surface decoration. They are families — bedsheets, bedcovers, dohars, table covers, table linen sets — developed through repetition, spacing, and use.</p>
-                </div>
-                <div class="col-span-8">
-                    <img src="dhyai-material-textile-shadow-fall.jpg" alt="Textile shadow" class="textile-img" style="margin-bottom: 24px;">
-                    <div class="grid-12">
-                        <div class="col-span-6"><img src="dhyai_process_blockprint-yellow-tray_02.jpg" alt="Block print" class="textile-img"></div>
-                        <div class="col-span-6"><img src="dhyai_process_label-stitching-detail_01.jpg" alt="Stitching" class="textile-img"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Cast Brass -->
-        <section class="section-pad" style="background-color: var(--bg-warm);">
-            <div class="container grid-12">
-                <div class="col-span-4">
-                    <h2>Cast Brass</h2>
-                    <p>Brass pieces are sand-cast, lathe-finished, and satin-brushed.</p>
-                    <p>The surface develops a living patina, deepening with use. The weight of the metal is essential to its presence in a room.</p>
-                    <p>Current brass work includes the Pebble Jār Set and the Kālāsh. Both are made for household use, gifting programmes, and custom adaptations.</p>
-                </div>
-                <div class="col-span-8">
-                    <img src="dhyai-material-brass-kalash-shadow.jpg" alt="Brass shadow" class="brass-obj" style="background: var(--bg-dark); margin-bottom: 24px;">
-                    <div class="grid-12">
-                        <div class="col-span-6"><img src="dhyai_process_brass_lathe_01.jpg" alt="Lathe" class="brass-obj" style="background: var(--bg-dark);"></div>
-                        <div class="col-span-6"><img src="dhyai-studies-brass-kalash-lineup.png" alt="Kalash" class="brass-obj" style="background: var(--bg-dark);"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ==================================================
-         STUDIES LANDING PAGE
-         ================================================== -->
-    <div id="studies" class="page" style="background-color: var(--bg-warm);">
-        <section class="section-pad" style="padding-top: 140px;">
-            <div class="container">
-                <h1>Studies</h1>
-                <p>Controlled rhythms in form and fabric.</p>
-                <p>Studies are released as complete families. Pieces may be ordered individually or specified in volume for events, gifting, and hospitality programmes.</p>
-            </div>
-            <div class="container grid-12" style="margin-top: 60px;">
-                <a onclick="routeTo('sthana')" class="preview-card col-span-4">
-                    <img src="dhyai_sthana_studies_flatlay_bc_1.jpg" alt="Sthāna">
-                    <h3 style="margin-top: 20px;">Sthāna</h3>
-                </a>
-                <a onclick="routeTo('sthiti')" class="preview-card col-span-4">
-                    <img src="dhyai_sthiti_studies_flatlay_bc_2.jpg" alt="Sthiti">
-                    <h3 style="margin-top: 20px;">Sthiti</h3>
-                </a>
-                <a onclick="routeTo('punar')" class="preview-card col-span-4">
-                    <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Punār">
-                    <h3 style="margin-top: 20px;">Punār</h3>
+                <a href="pebble-jar.html" class="img-overlay hover-zoom">
+                    <img src="assets/pebble-thumb.jpg" alt="Pebble Jar Set">
+                    <p style="text-align: center;">Pebble Jar Set</p>
                 </a>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <!-- STHANA STUDY PAGE (STRICT HIERARCHY) -->
-    <div id="sthana" class="page" style="background-color: var(--bg-textile-1);">
-        <section class="section-pad" style="padding-top: 140px;">
-            <div class="container">
-                <a onclick="routeTo('studies')" class="back-link nav-label" style="color: var(--bg-dark);">← Back to Studies</a>
-                <div class="grid-12">
-                    <div class="col-span-4" style="color: var(--bg-dark);">
-                        <h1 style="color: var(--bg-dark);">Sthāna</h1>
-                        <p class="title-font" style="color: var(--bg-mid); margin-bottom: 2rem;">स्थान · to be housed</p>
-                        <p style="color: var(--bg-mid);">A rose has been climbing the brick wall for some years. The brick holds it, and the rose holds the brick.</p>
-                        <p style="color: var(--bg-mid);">Hand-block-printed in cotton, in a single field of greens, with six to seven rose medallions held within the brick lattice.</p>
-                        <p style="margin-top: 3rem; color: var(--bg-mid); font-size: 15px;">Formats: bedsheet, bedcover, dohar, table cover, table linen set.</p>
-                    </div>
-                    <!-- HERO: 66% width -->
-                    <div class="col-span-8">
-                        <img src="dhyai-studies-sthana-dohar-in-use.jpg" alt="Atmosphere" class="textile-img">
-                    </div>
-                </div>
-                <!-- MEDIUMS: 33% width -->
-                <div class="grid-12" style="margin-top: var(--grid-gutter-desktop);">
-                    <div class="col-span-4"><img src="dhyai_sthana_studies_detail_bs_2.jpg" alt="Detail" class="textile-img"></div>
-                    <div class="col-span-4"><img src="dhyai_studies_sthana-table-linen-set-arranged_02.jpg" alt="Use" class="textile-img"></div>
-                    <div class="col-span-4"></div>
-                </div>
-                <!-- DETAILS: 25% width (Using placeholders for missing links) -->
-                <div class="grid-12" style="margin-top: var(--grid-gutter-desktop);">
-                    <div class="col-span-3"><img src="dhyai-studies-sthana-dohar-in-use.jpg" alt="Detail 1" class="textile-img"></div>
-                    <div class="col-span-3"><img src="dhyai_sthana_studies_detail_bs_2.jpg" alt="Detail 2" class="textile-img"></div>
-                    <div class="col-span-3"><img src="dhyai_studies_sthana-table-linen-set-arranged_02.jpg" alt="Detail 3" class="textile-img"></div>
-                    <div class="col-span-3"><img src="dhyai-studies-sthana-dohar-in-use.jpg" alt="Detail 4" class="textile-img"></div>
-                </div>
-            </div>
-        </section>
-    </div>
+    <footer>
+        <div class="container">
+            <h2>DHYAI</h2>
+            <p class="muted">A unit of GDB Advisors</p>
+        </div>
+    </footer>
 
-    <!-- STHITI STUDY PAGE -->
-    <div id="sthiti" class="page" style="background-color: var(--bg-textile-1);">
-        <section class="section-pad" style="padding-top: 140px;">
-            <div class="container">
-                <a onclick="routeTo('studies')" class="back-link nav-label" style="color: var(--bg-dark);">← Back to Studies</a>
-                <div class="grid-12">
-                    <div class="col-span-4" style="color: var(--bg-dark);">
-                        <h1 style="color: var(--bg-dark);">Sthiti</h1>
-                        <p class="title-font" style="color: var(--bg-mid); margin-bottom: 2rem;">स्थिति · the held moment</p>
-                        <p style="color: var(--bg-mid);">The same wall, on the day of a celebration.</p>
-                        <p style="color: var(--bg-mid);">Colour has entered the field because something in the house has shifted. A floral medallion that punctuates, not decorates.</p>
-                        <p style="margin-top: 3rem; color: var(--bg-mid); font-size: 15px;">Formats: bedsheet, bedcover, dohar, table cover, table linen set.</p>
-                    </div>
-                    <div class="col-span-8">
-                        <img src="dhyai-studies-sthiti-dohar-in-use-1.jpg" alt="Atmosphere" class="textile-img">
-                    </div>
-                </div>
-                <!-- MEDIUMS -->
-                <div class="grid-12" style="margin-top: var(--grid-gutter-desktop);">
-                    <div class="col-span-4"><img src="dhyai_sthiti_studies_detail_bc_3.jpg" alt="Detail" class="textile-img"></div>
-                    <div class="col-span-4"><img src="dhyai_studies_sthiti-tablecover-kalash-wide_01.jpg" alt="Use" class="textile-img"></div>
-                    <div class="col-span-4"></div>
-                </div>
-                <!-- DETAILS -->
-                <div class="grid-12" style="margin-top: var(--grid-gutter-desktop);">
-                    <div class="col-span-3"><img src="dhyai-studies-sthiti-dohar-in-use-1.jpg" alt="Detail 1" class="textile-img"></div>
-                    <div class="col-span-3"><img src="dhyai_sthiti_studies_detail_bc_3.jpg" alt="Detail 2" class="textile-img"></div>
-                    <div class="col-span-3"><img src="dhyai_studies_sthiti-tablecover-kalash-wide_01.jpg" alt="Detail 3" class="textile-img"></div>
-                    <div class="col-span-3"><img src="dhyai-studies-sthiti-dohar-in-use-1.jpg" alt="Detail 4" class="textile-img"></div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- PUNAR STUDY PAGE -->
-    <div id="punar" class="page" style="background-color: var(--bg-textile-1);">
-        <section class="section-pad" style="padding-top: 140px;">
-            <div class="container">
-                <a onclick="routeTo('studies')" class="back-link nav-label" style="color: var(--bg-dark);">← Back to Studies</a>
-                <div class="grid-12">
-                    <div class="col-span-4" style="color: var(--bg-dark);">
-                        <h1 style="color: var(--bg-dark);">Punār</h1>
-                        <p class="title-font" style="color: var(--bg-mid); margin-bottom: 2rem;">पुनर् · again</p>
-                        <p style="color: var(--bg-mid);">A pause taken beneath a tall palm.</p>
-                        <p style="color: var(--bg-mid);">The palm sits inside a more openly spaced rectangular structure. The dohar reverse carries a quiet dot grid.</p>
-                        <p style="color: var(--bg-mid);">Suited to rooms where surfaces need to read with more air.</p>
-                        <p style="margin-top: 3rem; color: var(--bg-mid); font-size: 15px;">Formats: bedsheet, bedcover, dohar.</p>
-                    </div>
-                    <div class="col-span-8">
-                        <img src="dhyai-studies-punar-dohar-in-use-1.jpg" alt="Atmosphere" class="textile-img">
-                    </div>
-                </div>
-                <!-- MEDIUMS -->
-                <div class="grid-12" style="margin-top: var(--grid-gutter-desktop);">
-                    <div class="col-span-4"><img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Detail" class="textile-img"></div>
-                    <div class="col-span-4"><img src="dhyai-studies-punar-dohar-in-use-2.jpg" alt="Use" class="textile-img"></div>
-                    <div class="col-span-4"></div>
-                </div>
-                <!-- DETAILS -->
-                <div class="grid-12" style="margin-top: var(--grid-gutter-desktop);">
-                    <div class="col-span-3"><img src="dhyai-studies-punar-dohar-in-use-1.jpg" alt="Detail 1" class="textile-img"></div>
-                    <div class="col-span-3"><img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Detail 2" class="textile-img"></div>
-                    <div class="col-span-3"><img src="dhyai-studies-punar-dohar-in-use-2.jpg" alt="Detail 3" class="textile-img"></div>
-                    <div class="col-span-3"><img src="dhyai-studies-punar-dohar-in-use-1.jpg" alt="Detail 4" class="textile-img"></div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ==================================================
-         OBJECTS LANDING PAGE
-         ================================================== -->
-    <div id="objects" class="page" style="background-color: var(--bg-warm);">
-        <section class="section-pad" style="padding-top: 140px;">
-            <div class="container page-header">
-                <h1>Objects</h1>
-                <p class="nav-label" style="font-size: 16px;">BRASS</p>
-            </div>
-            <div class="container grid-12">
-                <a onclick="routeTo('pebble-jar')" class="preview-card col-span-6">
-                    <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jār Set" style="background: var(--bg-dark); object-fit: contain; min-height: 40vh;">
-                    <h3 style="margin-top: 20px; text-align: center;">Pebble Jār Set</h3>
-                </a>
-                <a onclick="routeTo('kalash')" class="preview-card col-span-6">
-                    <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kālāsh" style="background: var(--bg-dark); object-fit: contain; min-height: 40vh;">
-                    <h3 style="margin-top: 20px; text-align: center;">Kālāsh</h3>
-                </a>
-            </div>
-        </section>
-    </div>
-
-    <!-- PEBBLE JAR -->
-    <div id="pebble-jar" class="page">
-        <section class="section-pad" style="padding-top: 140px;">
-            <div class="container">
-                <a onclick="routeTo('objects')" class="back-link nav-label">← Back to Objects</a>
-                <div class="grid-12">
-                    <div class="col-span-4">
-                        <h1>Pebble Jār Set</h1>
-                        <p>Two jars that sit in the hand, like pebbles taken from a riverbank. The tray is the flat rock one carries home to place the pebbles.</p>
-                        <p>Solid brass. Satin-brushed. Made for table use — salt, condiments, dry spices, small offerings.</p>
-                        <p>The patina is the accumulation of every time the piece was picked up.</p>
-                        <br><br>
-                        <a onclick="routeTo('contact')" class="nav-label" style="color: var(--accent-gold);">Enquire about Pebble Jār Set → CONTACT</a>
-                    </div>
-                    <div class="col-span-8" style="background: var(--bg-warm); padding: 5vh 0;">
-                        <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jar" class="brass-obj">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- KALASH -->
-    <div id="kalash" class="page">
-        <section class="section-pad" style="padding-top: 140px;">
-            <div class="container">
-                <a onclick="routeTo('objects')" class="back-link nav-label">← Back to Objects</a>
-                <div class="grid-12">
-                    <div class="col-span-4">
-                        <h1>Kālāsh</h1>
-                        <p class="title-font" style="color: var(--accent-gold); margin-bottom: 2rem;">कलश · a vessel</p>
-                        <p>A form that has existed in this part of the world for as long as there has been a part of the world.</p>
-                        <p>Cast in solid brass, satin-brushed, with a single engraving on the belly.</p>
-                        <p>Made for puja, household ritual, and everyday use.</p>
-                        <br><br>
-                        <a onclick="routeTo('contact')" class="nav-label" style="color: var(--accent-gold);">Enquire about Kālāsh → CONTACT</a>
-                    </div>
-                    <div class="col-span-8" style="background: var(--bg-warm); padding: 5vh 0;">
-                        <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kalash Lineup" class="brass-obj">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    <!-- ==================================================
-         COMMISSIONS PAGE
-         ================================================== -->
-    <div id="commissions" class="page">
-        <section class="section-pad" style="padding-top: 140px;">
-            <div class="bg-img" style="background-image: url('dhyai-jaali-brick-depth.png'); opacity: 0.2;"></div>
-            <div class="container grid-12">
-                <div class="col-span-12">
-                    <h1>Commissions</h1>
-                    <p>Commissions are how the studio enters another house.</p>
-                    <p>The brief arrives, the work is drawn, and the pieces are made for a particular space, occasion, or gathering.</p>
-                </div>
-            </div>
-        </section>
-        <section class="section-pad" style="background-color: var(--bg-warm); padding-top: 60px;">
-            <div class="container grid-12">
-                <div class="col-span-6">
-                    <h3>Weddings and private events</h3>
-                    <p>Return gifts, welcome objects, table programmes, ritual pieces — designed around a single occasion in a single house.</p>
-                    
-                    <h3 style="margin-top: 40px;">Corporate gifting</h3>
-                    <p>Considered gifting for senior teams, partners, and clients. Custom motifs, quiet packaging, and pieces made to stay beyond the event.</p>
-                    
-                    <h3 style="margin-top: 40px;">Hospitality, interiors, and private commissions</h3>
-                    <p>Surfaces drawn for a defined room or programme — a hotel suite, a restaurant table, a residential bedroom, a private cycle of gifting.</p>
-                </div>
-                
-                <div class="col-span-6" style="background-color: var(--bg-dark); padding: 48px; border: 1px solid rgba(216,199,170,0.08);">
-                    <div class="process-flow">
-                        <p style="color: var(--text-bone);">Brief</p>
-                        <div class="arrow">↓</div>
-                        <p style="color: var(--text-bone);">Drawing and development<br><span style="font-size: 16px; color: var(--text-muted);">five to six weeks</span></p>
-                        <div class="arrow">↓</div>
-                        <p style="color: var(--text-bone);">Prototype and revision<br><span style="font-size: 16px; color: var(--text-muted);">four to six weeks</span></p>
-                        <div class="arrow">↓</div>
-                        <p style="color: var(--text-bone);">Production<br><span style="font-size: 16px; color: var(--text-muted);">four to six weeks</span></p>
-                        <div class="arrow">↓</div>
-                        <p style="color: var(--text-bone);">Delivery</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ==================================================
-         CONTACT / ENQUIRY PAGE
-         ================================================== -->
-    <div id="contact" class="page">
-        <section class="section-pad" style="min-height: 100vh; display: flex; align-items: center;">
-            <div class="bg-img" style="background-image: url('dhyai_home_hero_jali-shadow-wide_01.jpg'); opacity: 0.25; background-position: left center;"></div>
-            <div class="container grid-12" style="width: 100%;">
-                <div class="col-span-6">
-                    <h1>Enquiry</h1>
-                    <p style="margin-bottom: 60px;">To begin a conversation.<br>Write to the studio.</p>
-                    
-                    <p class="title-font" style="color: var(--accent-gold); font-size: 24px; margin-bottom: 0;">Dhyai Studio</p>
-                    <p>Devanahalli, Bengaluru</p>
-                    <br>
-                    <p>contact@dhyai.studio<br>WhatsApp +91 83685 44393</p>
-                    <p>dhyai.studio</p>
-                </div>
-                
-                <div class="col-span-6">
-                    <form onsubmit="event.preventDefault(); alert('Message sent.');">
-                        <input type="text" placeholder="Name" required>
-                        <input type="email" placeholder="Email" required>
-                        <input type="text" placeholder="Subject">
-                        <textarea rows="4" placeholder="Message" required></textarea>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ==================================================
-         SCRIPT
-         ================================================== -->
-    <script>
-        const pages = document.querySelectorAll('.page');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const header = document.getElementById('main-header');
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinksContainer = document.getElementById('nav-links');
-        
-        function routeTo(pageId) {
-            pages.forEach(p => p.classList.remove('active'));
-            navLinks.forEach(l => l.classList.remove('active'));
-            
-            const target = document.getElementById(pageId);
-            if (target) {
-                target.classList.add('active');
-            } else {
-                document.getElementById('home').classList.add('active');
-                pageId = 'home';
-            }
-            
-            const activeLink = document.getElementById('nav-' + pageId);
-            if (activeLink) activeLink.classList.add('active');
-            
-            menuToggle.classList.remove('nav-open');
-            navLinksContainer.classList.remove('nav-open');
-            
-            window.location.hash = pageId;
-            window.scrollTo({ top: 0, behavior: 'instant' });
-        }
-        function toggleNav() {
-            menuToggle.classList.toggle('nav-open');
-            navLinksContainer.classList.toggle('nav-open');
-        }
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        window.addEventListener('DOMContentLoaded', () => {
-            const hash = window.location.hash.substring(1) || 'home';
-            routeTo(hash);
-        });
-        window.addEventListener('hashchange', () => {
-            const hash = window.location.hash.substring(1) || 'home';
-            routeTo(hash);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
