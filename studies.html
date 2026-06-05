@@ -3,52 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHYAI | Studies</title>
+    <title>Studies | DHYAI</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <div class="nav-inner">
-            <a href="index.html" class="logo"><img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI"></a>
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="studio.html">Studio</a>
-                <a href="material.html">Material</a>
-                <a href="studies.html" style="color: var(--accent-gold);">Studies</a>
-                <a href="objects.html">Objects</a>
-                <a href="commissions.html">Commissions</a>
-                <a href="enquiry.html">Contact</a>
-            </nav>
-        </div>
-    </header>
+<body class="light-theme">
+    <header><nav class="nav-links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a></nav><div class="hamburger" onclick="toggleMenu()">☰</div></header>
+    <div class="mobile-menu"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a><div class="hamburger" style="top: 20px;" onclick="toggleMenu()">✕</div></div>
 
-    <section style="margin-top: var(--nav-height);">
+    <section style="padding-top: 150px; min-height: 80vh;">
         <div class="container">
-            <h1>Studies</h1>
-            <p>Controlled rhythms in form and fabric.</p>
-            <p>Studies are released as complete object families. Pieces may be ordered individually or specified in volume for events, gifting, and hospitality programmes.</p>
-            
-            <div class="grid-3" style="margin-top: 60px;">
-                <div class="preview-card">
-                    <a href="sthana.html">
-                        <img src="dhyai_sthana_studies_flatlay_bc_1.jpg" alt="Sthāna" class="img-16-9">
-                        <h3>Sthāna</h3>
-                    </a>
-                </div>
-                <div class="preview-card">
-                    <a href="sthiti.html">
-                        <img src="dhyai_sthiti_studies_flatlay_bc_2.jpg" alt="Sthiti" class="img-16-9">
-                        <h3>Sthiti</h3>
-                    </a>
-                </div>
-                <div class="preview-card">
-                    <a href="punar.html">
-                        <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Punār" class="img-16-9">
-                        <h3>Punār</h3>
-                    </a>
-                </div>
+            <h1 style="text-align: center; margin-bottom: 80px;">Studies</h1>
+            <div class="grid-3">
+                <a href="sthana.html" class="img-overlay hover-zoom">
+                    <img src="assets/sthana-main.jpg" alt="Sthāna">
+                    <h2 style="margin-top: 20px;">Sthāna</h2>
+                </a>
+                <a href="sthiti.html" class="img-overlay hover-zoom">
+                    <img src="assets/sthiti-main.jpg" alt="Sthiti">
+                    <h2 style="margin-top: 20px;">Sthiti</h2>
+                </a>
+                <a href="punar.html" class="img-overlay hover-zoom">
+                    <img src="assets/punar-main.jpg" alt="Punar">
+                    <h2 style="margin-top: 20px;">Punar</h2>
+                </a>
             </div>
         </div>
     </section>
+
+    <footer><div class="container"><h2>DHYAI</h2><p class="muted">A unit of GDB Advisors</p></div></footer>
+    <script src="script.js"></script>
 </body>
 </html>
