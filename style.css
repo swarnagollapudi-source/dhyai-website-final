@@ -51,7 +51,7 @@ nav a:hover, nav a.active { color: var(--accent-gold); }
 .pt-header { padding-top: 150px; }
 .back-link { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; display: block; }
 
-/* Split Layouts (Studio, Material, Detail pages) */
+/* Split Layouts */
 .split-layout { display: flex; justify-content: space-between; margin-bottom: 100px; }
 .split-text { width: 48%; }
 .split-text.narrow { width: 34%; }
@@ -66,7 +66,7 @@ nav a:hover, nav a.active { color: var(--accent-gold); }
 /* Home Sections */
 .hero {
   height: 100vh;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, rgba(8,6,4,1) 100%), url('../assets/dhyai_home_hero_jali-shadow-wide_01.jpg') center/cover no-repeat;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, rgba(8,6,4,1) 100%), url('dhyai_home_hero_jali-shadow-wide_01.jpg') center/cover no-repeat;
   display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
 }
 .hero img.logo { width: 220px; margin-bottom: 20px; }
@@ -78,7 +78,7 @@ nav a:hover, nav a.active { color: var(--accent-gold); }
 
 .quotes-section {
   height: 720px;
-  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('../assets/dhyai_home_transition_jali-shadow-vertical_01.jpg') center/cover no-repeat;
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('dhyai_home_transition_jali-shadow-vertical_01.jpg') center/cover no-repeat;
   position: relative;
 }
 .quote { position: absolute; font-style: italic; font-size: 24px; max-width: 400px; }
@@ -123,5 +123,6 @@ nav a:hover, nav a.active { color: var(--accent-gold); }
   .split-text, .split-image.wide, .split-text.narrow, .split-text.study-text, .split-image.grid { width: 100%; }
   .objects-grid, .studies-grid { grid-template-columns: 1fr; }
   .objects-card img { height: 260px; }
-  .enquiry-form { width: 100%; }
+  .enquiry-form {
+    width: 100%; }
 }
