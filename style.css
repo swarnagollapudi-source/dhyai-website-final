@@ -68,23 +68,31 @@ nav a:hover, nav a.active { color: var(--accent-gold); }
   height: 100vh;
   background: linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, rgba(8,6,4,1) 100%), url('dhyai_home_hero_jali-shadow-wide_01.jpg') center/cover no-repeat;
   display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  padding-top: 12vh;
 }
-.hero img.logo { width: 220px; margin-bottom: 20px; }
+.hero img.logo { width: 253px; margin-bottom: 20px; }
 
-.intro-section { padding: 120px 0 120px 12vw; max-width: 620px; }
+.intro-section { 
+  padding: 120px 0 120px 12vw; 
+  max-width: 760px; 
+  font-size: 26px;
+  line-height: 1.8;
+}
 
-.principles-section { background-color: var(--bg-dark-panel); padding: 100px 24px; }
-.principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1180px; margin: 0 auto; }
+.principles-section { background-color: var(--bg-dark-panel); padding: 160px 24px; }
+.principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px; max-width: 1180px; margin: 0 auto; }
+.principles-grid h2 { font-size: 40px; margin-bottom: 20px; }
+.principles-grid p { font-size: 18px; }
 
 .quotes-section {
   height: 720px;
   background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('dhyai_home_transition_jali-shadow-vertical_01.jpg') center/cover no-repeat;
   position: relative;
 }
-.quote { position: absolute; font-style: italic; font-size: 24px; max-width: 400px; }
-.q1 { top: 20%; left: 15%; } .q2 { top: 45%; right: 15%; } .q3 { bottom: 20%; left: 25%; } .q4 { bottom: 10%; right: 20%; }
+.quote { position: absolute; font-style: italic; font-size: 24px; max-width: 500px; }
+.q1 { top: 35%; left: 15%; } .q2 { bottom: 25%; right: 15%; }
 
-.preview-section { display: flex; background: linear-gradient(to right, #9A805D 50%, var(--bg-dark) 50%); padding: 100px 0; }
+.preview-section { display: flex; background: linear-gradient(180deg, rgba(190,130,51,0.03), rgba(0,0,0,0)); padding: 100px 0; }
 .preview-container { width: 86vw; margin: 0 auto; }
 .cards-row { display: flex; gap: 26px; margin-top: 40px; overflow-x: auto; }
 .preview-card { width: 180px; flex-shrink: 0; }
@@ -105,17 +113,18 @@ nav a:hover, nav a.active { color: var(--accent-gold); }
 
 /* Responsive */
 @media (max-width: 767px) {
-  body { font-size: 13px; padding: 24px; padding-top: 0; }
+  body { padding: 24px; padding-top: 0; }
   h1 { font-size: 34px; }
   header { height: 54px; }
   nav ul { gap: 14px; }
   nav a { font-size: 8px; letter-spacing: 2.5px; }
   .pt-header { padding-top: 90px; }
-  .hero img.logo { width: 120px; }
-  .intro-section { padding: 60px 0; }
-  .principles-grid { grid-template-columns: 1fr; gap: 30px; }
+  .hero img.logo { width: 138px; }
+  .intro-section { padding: 120px 24px 60px 24px; font-size: 20px; }
+  .principles-section { padding: 160px 24px; }
+  .principles-grid { grid-template-columns: 1fr; gap: 40px; }
   .quotes-section { height: 850px; }
-  .quote { position: static; margin: 40px auto; text-align: center; }
+  .quote { position: static; margin: 40px auto; text-align: center; max-width: 90%; }
   .preview-section { background: var(--bg-dark); }
   .preview-card { width: 135px; }
   .preview-card img { height: 230px; }
@@ -124,5 +133,5 @@ nav a:hover, nav a.active { color: var(--accent-gold); }
   .objects-grid, .studies-grid { grid-template-columns: 1fr; }
   .objects-card img { height: 260px; }
   .enquiry-form {
-     width: 100%; }
+    width: 100%; }
 }
