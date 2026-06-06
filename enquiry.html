@@ -3,48 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENQUIRY | DHYAI</title>
-    <link rel="stylesheet" href="style.css">
+    <title>DHYAI | Enquiry</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { background: linear-gradient(rgba(216, 201, 168, 0.82), rgba(216, 201, 168, 0.82)), url('assets/dhyai_home_transition_jali-shadow-vertical_01.jpg') center/cover; }
+    </style>
 </head>
 <body class="light-theme">
+    <header style="background: rgba(216, 201, 168, 0.6);">
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="studio.html">STUDIO</a></li>
+                <li><a href="material.html">MATERIAL</a></li>
+                <li><a href="studies.html">STUDIES</a></li>
+                <li><a href="objects.html">OBJECTS</a></li>
+                <li><a href="commissions.html">COMMISSIONS</a></li>
+                <li><a href="enquiry.html" class="active">ENQUIRY</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="studio.html">STUDIO</a></li>
-            <li><a href="material.html">MATERIAL</a></li>
-            <li><a href="studies.html">STUDIES</a></li>
-            <li><a href="objects.html">OBJECTS</a></li>
-            <li><a href="commissions.html">COMMISSIONS</a></li>
-            <li><a href="enquiry.html">ENQUIRY</a></li>
-        </ul>
-    </nav>
-
-    <section style="position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding-top: var(--nav-height);">
-        <img src="dhyai_home_hero_jali-shadow-wide_01.jpg" alt="Atmospheric" style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index: -2;">
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(209, 194, 160, 0.90); z-index: -1;"></div>
-        
-        <div class="container content-width grid-2" style="z-index: 1; width: 100%;">
-            <div>
-                <h1>Dhyai Studio</h1>
-                <p>Devanahalli, Bengaluru</p>
-                <br>
-                <p>contact@dhyai.studio</p>
-                <p>WhatsApp</p>
+    <main class="container pt-header" style="padding-bottom: 100px;">
+        <div class="split-layout">
+            <div class="split-text">
+                <h1 style="margin-bottom: 40px;">Enquiry</h1>
+                <p>Dhyai Studio<br>Devanahalli, Bengaluru</p><br>
+                <p>contact@dhyai.studio<br>WhatsApp +91 83685 44393</p><br>
                 <p>dhyai.studio</p>
             </div>
-            <div>
-                <form>
+            <div class="split-image wide">
+                <form class="enquiry-form">
                     <input type="text" placeholder="Name">
                     <input type="email" placeholder="Email">
                     <input type="text" placeholder="Subject">
-                    <textarea rows="4" placeholder="Message"></textarea>
-                    <button type="button">SUBMIT</button>
+                    <textarea placeholder="Message" rows="4"></textarea>
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
-    </section>
-
+    </main>
 </body>
-</htm
-    l>
+</html>
