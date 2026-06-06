@@ -3,37 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enquiry | DHYAI</title>
+    <title>ENQUIRY | DHYAI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="light-theme">
-    <header><nav class="nav-links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a></nav><div class="hamburger" onclick="toggleMenu()">☰</div></header>
-    <div class="mobile-menu"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a><div class="hamburger" style="top: 20px;" onclick="toggleMenu()">✕</div></div>
 
-    <section style="padding-top: 150px; min-height: 80vh;">
-        <div class="container grid-2">
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="studio.html">STUDIO</a></li>
+            <li><a href="material.html">MATERIAL</a></li>
+            <li><a href="studies.html">STUDIES</a></li>
+            <li><a href="objects.html">OBJECTS</a></li>
+            <li><a href="commissions.html">COMMISSIONS</a></li>
+            <li><a href="enquiry.html">ENQUIRY</a></li>
+        </ul>
+    </nav>
+
+    <section style="position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding-top: var(--nav-height);">
+        <img src="dhyai_home_hero_jali-shadow-wide_01.jpg" alt="Atmospheric" style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index: -2;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(209, 194, 160, 0.90); z-index: -1;"></div>
+        
+        <div class="container content-width grid-2" style="z-index: 1; width: 100%;">
             <div>
-                <h1>Enquiry</h1>
-                <br>
-                <h3 class="accent">Dhyai Studio</h3>
+                <h1>Dhyai Studio</h1>
                 <p>Devanahalli, Bengaluru</p>
-                <p>contact@dhyai.studio<br>WhatsApp</p>
+                <br>
+                <p>contact@dhyai.studio</p>
+                <p>WhatsApp</p>
                 <p>dhyai.studio</p>
             </div>
-            
             <div>
-                <form action="#" method="POST">
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="text" name="subject" placeholder="Subject" required>
-                    <textarea name="message" rows="5" placeholder="Message" required></textarea>
-                    <button type="submit">Submit</button>
+                <form>
+                    <input type="text" placeholder="Name">
+                    <input type="email" placeholder="Email">
+                    <input type="text" placeholder="Subject">
+                    <textarea rows="4" placeholder="Message"></textarea>
+                    <button type="button">SUBMIT</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer><div class="container"><h2>DHYAI</h2><p class="muted">A unit of GDB Advisors</p></div></footer>
-    <script src="script.js"></script>
 </body>
-</html>
+</htm
+    l>
