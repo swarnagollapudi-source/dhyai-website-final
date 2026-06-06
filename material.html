@@ -3,56 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATERIAL | DHYAI</title>
-    <link rel="stylesheet" href="style.css">
+    <title>DHYAI | Material</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme">
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="studio.html">STUDIO</a></li>
+                <li><a href="material.html" class="active">MATERIAL</a></li>
+                <li><a href="studies.html">STUDIES</a></li>
+                <li><a href="objects.html">OBJECTS</a></li>
+                <li><a href="commissions.html">COMMISSIONS</a></li>
+                <li><a href="enquiry.html">ENQUIRY</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="studio.html">STUDIO</a></li>
-            <li><a href="material.html">MATERIAL</a></li>
-            <li><a href="studies.html">STUDIES</a></li>
-            <li><a href="objects.html">OBJECTS</a></li>
-            <li><a href="commissions.html">COMMISSIONS</a></li>
-            <li><a href="enquiry.html">ENQUIRY</a></li>
-        </ul>
-    </nav>
+    <main class="container pt-header">
+        <h1 style="margin-bottom: 20px;">Material</h1>
+        <p style="margin-bottom: 80px;">Matter holding time.</p>
 
-    <section style="margin-top: var(--nav-height);">
-        <div class="container content-width grid-2">
-            <div>
-                <h1>Textiles</h1>
-                <p>DHYAI works with pure cotton, muslin, and silk. The fabrics are chosen for how they drape, how they hold shadows, and how they soften with lived experience.</p>
-                <p>The current studies are families — bedsheets, bedcovers, dohars, table covers, table linen sets — developed through repetition, spacing, and use.</p>
+        <div class="split-layout">
+            <div class="split-text">
+                <h2 style="margin-bottom: 20px;">Textile</h2>
+                <p>DHYAI works with cotton, muslin, silk and other natural fabrics.</p><br>
+                <p>The fabrics are chosen for how they drape, hold shadow, and soften with lived experience.</p><br>
+                <p>The current textile studies are not surface decoration. They are object families — bedsheets, bedcovers, dohars, table covers, and table linen sets — developed through repetition, spacing, weight, and use.</p>
             </div>
-            <div class="stack-img">
-                <img src="dhyai-material-textile-shadow-fall.jpg" alt="Textiles">
-                <div class="grid-2" style="gap: 20px;">
-                    <img src="dhyai_process_blockprint-yellow-tray_02.jpg" alt="Process">
-                    <img src="dhyai_process_label-stitching-detail_01.jpg" alt="Stitching">
-                </div>
+            <div class="split-image">
+                <img src="assets/dhyai_process_blockprint-yellow-tray_02.jpg" alt="Blockprinting" class="img-cover" style="height: 350px;">
+                <img src="assets/dhyai_process_label-stitching-detail_01.jpg" alt="Stitching" class="img-cover" style="height: 250px;">
+                <img src="assets/dhyai_punar_studies_flatlay_bc_1.jpg" alt="Textile Stack" class="img-cover" style="height: 350px;">
             </div>
         </div>
-    </section>
 
-    <section>
-        <div class="container content-width grid-2">
-            <div class="stack-img">
-                <img src="dhyai-studies-brass-kalash-lineup.png" alt="Cast Brass">
-                <div class="grid-2" style="gap: 20px;">
-                    <img src="dhyai_process_brass_lathe_01.jpg" alt="Lathe">
-                    <img src="dhyai-material-brass-kalash-shadow.jpg" alt="Shadow">
-                </div>
-            </div>
-            <div>
-                <h1>Cast Brass</h1>
-                <p>The brass develops a living patina, where the surface deepens with use. And the weight of the metal is essential to its presence in a room.</p>
+        <div class="split-layout" style="flex-direction: row-reverse;">
+            <div class="split-text">
+                <h2 style="margin-bottom: 20px;">Cast Brass</h2>
+                <p>Brass carries weight, warmth, and surface memory. It changes with handling and develops a living patina over time.</p><br>
                 <p>Brass pieces are sand-cast, lathe-finished, and satin-brushed.</p>
             </div>
+            <div class="split-image">
+                <img src="assets/dhyai_studies_brass-vessel-front-room_01.jpg" alt="Brass Vessel" class="img-cover" style="height: 350px;">
+                <img src="assets/dhyai_process_brass_lathe_01.jpg" alt="Lathe Process" class="img-cover" style="height: 350px;">
+                <img src="assets/dhyai_studies_pebble_js_3.png" alt="Pebble Jar Top" class="img-contain" style="height: 250px;">
+            </div>
         </div>
-    </section>
-
+    </main>
 </body>
 </html>
