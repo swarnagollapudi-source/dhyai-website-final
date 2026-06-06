@@ -3,30 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio | DHYAI</title>
-    <link rel="stylesheet" href="style.css">
+    <title>DHYAI | Studio</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme">
-    <header><nav class="nav-links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a></nav><div class="hamburger" onclick="toggleMenu()">☰</div></header>
-    <div class="mobile-menu"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="material.html">Material</a><a href="studies.html">Studies</a><a href="objects.html">Objects</a><a href="commissions.html">Commissions</a><a href="enquiry.html">Enquiry</a><div class="hamburger" style="top: 20px;" onclick="toggleMenu()">✕</div></div>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="studio.html" class="active">STUDIO</a></li>
+                <li><a href="material.html">MATERIAL</a></li>
+                <li><a href="studies.html">STUDIES</a></li>
+                <li><a href="objects.html">OBJECTS</a></li>
+                <li><a href="commissions.html">COMMISSIONS</a></li>
+                <li><a href="enquiry.html">ENQUIRY</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <section style="padding-top: 150px;">
-        <div class="container grid-2" style="max-width: 1300px;">
-            <div>
-                <h1>Studio</h1>
-                <p>The studio operates at the intersection of philosophy and material. We view objects not as decorations, but as anchors within a physical space.</p>
-                <p>Every piece is developed slowly, allowing the material to dictate its final form. It is an atmospheric practice, concerned with shadows, weight, and the quiet presence of things.</p>
+    <main class="container pt-header">
+        <div class="split-layout">
+            <div class="split-text">
+                <h1>The Studio</h1><br>
+                <p>DHYAI is a material and surface design practice based in Bengaluru.</p><br>
+                <p>It works across objects, textiles, and material studies for homes, interiors, private events, gifting, and hospitality.</p><br>
+                <p>The name ध्यै is Sanskrit — to fix the mind upon.<br>A fold. A weight. A softened edge. A repeated touch.</p><br>
+                <p>Some objects mark a moment. Others remain after the moment has passed. Dhyai works with the latter.</p><br>
+                <p>Each piece begins with material. Weight, texture, density, and the way a surface interacts with light are treated as primary conditions.</p><br>
+                <p>The work is produced in small numbers, by hand, in workshops the studio has chosen to work with over time.</p>
             </div>
-            <div style="display: grid; gap: 20px;">
-                <div class="img-overlay"><img src="assets/studio-1.jpg" alt="Studio space"></div>
-                <div class="img-overlay"><img src="assets/studio-jali.jpg" alt="Jali shadows"></div>
-                <div class="img-overlay"><img src="assets/studio-workspace.jpg" alt="Workspace"></div>
-                <div class="img-overlay"><img src="assets/studio-samples.jpg" alt="Material samples"></div>
+            <div class="split-image">
+                <img src="assets/dhyai_process_blockprint-yellow-tray_01.jpg" alt="Blockprint Tray" class="img-cover" style="height: 500px;">
+                <img src="assets/dhyai_home_transition_jali-shadow-vertical_01.jpg" alt="Jali Shadow" class="img-cover" style="height: 300px;">
+                <img src="assets/dhyai_process_label-stitching-detail_01.jpg" alt="Label Stitching Detail" class="img-cover" style="height: 300px;">
             </div>
         </div>
-    </section>
-
-    <footer><div class="container"><h2>DHYAI</h2><p class="muted">A unit of GDB Advisors</p></div></footer>
-    <script src="script.js"></script>
+    </main>
 </body>
 </html>
