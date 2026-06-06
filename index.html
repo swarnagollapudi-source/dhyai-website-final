@@ -3,106 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME | DHYAI</title>
-    <link rel="stylesheet" href="style.css">
+    <title>DHYAI | Home</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme">
-
+<body class="dark">
     <nav>
-        <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="studio.html">STUDIO</a></li>
-            <li><a href="material.html">MATERIAL</a></li>
-            <li><a href="studies.html">STUDIES</a></li>
-            <li><a href="objects.html">OBJECTS</a></li>
-            <li><a href="commissions.html">COMMISSIONS</a></li>
-            <li><a href="enquiry.html">ENQUIRY</a></li>
-        </ul>
+        <a href="index.html">HOME</a>
+        <a href="studio.html">STUDIO</a>
+        <a href="material.html">MATERIAL</a>
+        <a href="studies.html">STUDIES</a>
+        <a href="objects.html">OBJECTS</a>
+        <a href="commissions.html">COMMISSIONS</a>
+        <a href="enquiry.html">ENQUIRY</a>
     </nav>
-
-    <!-- SECTION 1 -->
-    <section style="padding: 0; position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;">
-        <img src="dhyai_home_hero_jali-shadow-wide_01.jpg" alt="Jali Wall" style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index: -2;">
-        <div class="bg-overlay" style="z-index: -1;"></div>
-        <div style="z-index: 1;">
-            <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" style="width: 100%; max-width: 250px; margin: 0 auto 24px auto;">
-            <p style="font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--text-light); margin-bottom: 8px;">ध्ये</p>
-            <p style="color: var(--text-light); font-size: 18px;">To fix the mind upon.</p>
+    <section class="hero-full">
+        <img src="assets/images/dhyai_home_hero_jali-shadow-wide_01.jpg" class="hero-bg" alt="Jali Shadow">
+        <div class="bg-overlay"></div>
+        <div class="container" style="text-align: center; z-index: 2;">
+            <img src="assets/images/dhyai_brand_logo_gold-black_01.png" style="width: 180px; margin: 0 auto 20px auto;">
+            <h1 style="font-size: 26px;">ध्यै</h1>
+            <p>To fix the mind upon.</p>
         </div>
     </section>
-
-    <!-- SECTION 2 -->
-    <section>
-        <div class="container content-width">
-            <h2 style="margin-bottom: 40px;">A stone from a riverbed sits on the shelf for years.</h2>
-            <p>Objects that settle into life slowly are,</p>
-            <p>Time, embodied in material.<br>Objects meant to live with.</p>
+    <section class="container" style="padding: 120px 80px;">
+        <p>A stone from a riverbed sits on the shelf for years.</p>
+        <p>Objects that settle into life slowly are,</p>
+        <p>Time, embodied in material.<br>Objects meant to live with.</p>
+    </section>
+    <section class="container grid-3">
+        <div><h3>Object gravity</h3><p>A piece belongs without justification. It carries its own weight in a room.</p></div>
+        <div><h3>Objects through time</h3><p>The object moves across homes and decades without becoming obsolete.</p></div>
+        <div><h3>Object coherence</h3><p>Material, use, ageing, and repetition resolve into quiet certainty.</p></div>
+    </section>
+    <section class="container" style="text-align: center; padding: 120px 0;">
+        <img src="assets/images/dhyai_home_transition_jali-shadow-vertical_01.jpg" style="width:100%; height:700px; object-fit:cover; filter:blur(1.5px) brightness(0.8) saturate(0.9); margin-bottom: 40px;">
+        <p style="font-family: 'Cormorant Garamond'; font-size: 32px;">“There is an experience. Objects happen inside it.”</p>
+        <p style="font-family: 'Cormorant Garamond'; font-size: 32px;">“The object should feel like it belongs to time.”</p>
+    </section>
+    <section class="container" style="background:#A98E68; color: var(--text-deep);">
+        <h2 style="margin-bottom: 60px;">STUDIES & OBJECTS</h2>
+        <div class="grid-5">
+            <a href="sthana.html"><img src="assets/images/dhyai_sthana_studies_flatlay_2.jpg"><p>Sthāna</p></a>
+            <a href="sthiti.html"><img src="assets/images/dhyai_sthiti_studies_flatlay_2.jpg"><p>Sthiti</p></a>
+            <a href="punar.html"><img src="assets/images/dhyai_punar_studies_flatlay_bc_3.jpg"><p>Punar</p></a>
+            <a href="kalash.html"><img src="assets/images/dhyai-studies-brass-kalash-lineup.png"><p>Kālash</p></a>
+            <a href="pebble-jar.html"><img src="assets/images/dhyai_studies_pebble_jb_3.jpg"><p>Pebble Jar Set</p></a>
         </div>
     </section>
-
-    <!-- SECTION 3 -->
-    <section>
-        <div class="container content-width grid-3">
-            <div>
-                <h2 style="font-size: 28px;">Object gravity</h2>
-                <p>A piece belongs without justification. It carries its own weight in a room.</p>
-            </div>
-            <div>
-                <h2 style="font-size: 28px;">Objects through time</h2>
-                <p>The object moves across homes and decades without becoming obsolete.</p>
-            </div>
-            <div>
-                <h2 style="font-size: 28px;">Object coherence</h2>
-                <p>Material, use, ageing, and repetition resolve into quiet certainty.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4 -->
-    <section style="position: relative; padding: 200px 0; text-align: center;">
-        <img src="dhyai_home_transition_jali-shadow-vertical_01.jpg" alt="Atmospheric" style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; filter: blur(2px); z-index: -2;">
-        <div class="bg-overlay" style="z-index: -1;"></div>
-        <div class="container" style="z-index: 1;">
-            <p style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--text-light); margin: 0 auto;">Nothing seeks your attention.</p>
-            <p style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--text-light); margin: 0 auto;">And then you notice something — not because it announced itself, but because it exists and you arrived at it.</p>
-        </div>
-    </section>
-
-    <!-- SECTION 5 -->
-    <section>
-        <div class="container content-width">
-            <h2 style="margin-bottom: 60px;">Studies & Objects</h2>
-            <div class="grid-5">
-                <a href="sthana.html">
-                    <img src="dhyai_sthana_studies_flatlay_bc_1.jpg" alt="Sthāna" style="margin-bottom: 16px;">
-                    <p>Sthāna</p>
-                </a>
-                <a href="sthiti.html">
-                    <img src="dhyai_sthiti_studies_flatlay_bc_2.jpg" alt="Sthiti" style="margin-bottom: 16px;">
-                    <p>Sthiti</p>
-                </a>
-                <a href="punar.html">
-                    <img src="dhyai_punar_studies_flatlay_bc_1.jpg" alt="Punar" style="margin-bottom: 16px;">
-                    <p>Punar</p>
-                </a>
-                <a href="kalash.html">
-                    <img src="dhyai-studies-brass-kalash-lineup.png" alt="Kalash" style="margin-bottom: 16px;">
-                    <p>Kalash</p>
-                </a>
-                <a href="pebble-jar.html">
-                    <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jar Set" style="margin-bottom: 16px;">
-                    <p>Pebble Jar Set</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container content-width" style="text-align: center;">
-            <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" style="width: 100px; margin: 0 auto 16px auto;">
-            <p style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase;">A unit of GDB Advisors</p>
-        </div>
-    </footer>
-
+    <footer><div class="container"><img src="assets/images/dhyai_brand_logo_gold-black_01.png" style="width: 100px; margin: 0 auto 12px auto;"><p>A unit of GDB Advisors</p></div></footer>
 </body>
 </html>
