@@ -1,31 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><link rel="stylesheet" href="css/style.css"></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHYAI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 <body class="dark">
-    <nav><a href="index.html">HOME</a><a href="studio.html">STUDIO</a><a href="material.html">MATERIAL</a><a href="studies.html">STUDIES</a><a href="objects.html">OBJECTS</a><a href="commissions.html">COMMISSIONS</a><a href="enquiry.html">ENQUIRY</a></nav>
-    <section style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <img src="dhyai_brand_logo_gold-black_01.png" style="width: 180px;">
-        <h1 style="margin-top: 20px;">ध्यै</h1>
-        <p>To fix the mind upon.</p>
+
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="studio.html">STUDIO</a>
+        <a href="material.html">MATERIAL</a>
+        <a href="studies.html">STUDIES</a>
+        <a href="objects.html">OBJECTS</a>
+        <a href="commissions.html">COMMISSIONS</a>
+        <a href="enquiry.html">ENQUIRY</a>
+    </nav>
+
+    <section style="height: 100vh;">
+        <img src="dhyai_home_hero_jali-shadow-wide_01.jpg" alt="Atmosphere" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" style="width: 180px; margin-bottom: 24px;">
+            <div class="sanskrit" style="font-family: 'Marcellus', serif; color: var(--text-ivory);">ध्यै</div>
+            <div style="font-size: 21px; color: var(--text-ivory);">To fix the mind upon</div>
+        </div>
     </section>
-    <section class="container">
+
+    <section class="container" style="max-width: 800px; margin: 0;">
         <p>A stone from a riverbed sits on the shelf for years.</p>
         <p>Objects that settle into life slowly are,</p>
         <p>Time, embodied in material.<br>Objects meant to live with.</p>
     </section>
-    <section class="container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
-        <div><h2>Object gravity</h2><p>A piece belongs without justification.</p></div>
-        <div><h2>Objects through time</h2><p>Moves across homes and decades without becoming obsolete.</p></div>
-        <div><h2>Object coherence</h2><p>Repetition resolves into quiet certainty.</p></div>
+
+    <section class="container grid-3" style="padding-top: 0;">
+        <div>
+            <h2>Object gravity</h2>
+            <p>A piece belongs without justification. It carries its own weight in a room.</p>
+        </div>
+        <div>
+            <h2>Objects through time</h2>
+            <p>The object moves across homes and decades without becoming obsolete.</p>
+        </div>
+        <div>
+            <h2>Object coherence</h2>
+            <p>Material, use, ageing, and repetition resolve into quiet certainty.</p>
+        </div>
     </section>
-    <section class="container" style="text-align: center;">
-        <p>Nothing seeks your attention.</p>
-        <p>And then you notice something — not because it announced itself, but because it exists and you arrived at it.</p>
-        <p>“There is an experience. Objects happen inside it.”</p>
-        <p>“The object should feel like it belongs to time.”</p>
+
+    <section style="padding: 180px 0;">
+        <img src="dhyai_home_transition_jali-shadow-vertical_01.jpg" alt="Atmosphere transition" class="hero-bg">
+        <div class="hero-overlay" style="background: rgba(16,9,7,0.62);"></div>
+        <div class="container staggered-quotes" style="position: relative; z-index: 3;">
+            <div>
+                <p class="italic-quote">"There is an experience. Objects happen inside it."</p>
+            </div>
+            <div>
+                <p class="italic-quote">"Nothing seeks your attention. And then you notice something — not because it announces itself, but because it exists and you arrived at it."</p>
+            </div>
+        </div>
     </section>
-    <footer style="text-align: center; padding-bottom: 60px;">
-        <p>DHYAI</p><p>A unit of GDB Advisors</p>
+
+    <section class="container">
+        <h2 style="margin-bottom: 60px;">STUDIES & OBJECTS</h2>
+        <div class="grid-5">
+            <a href="sthana.html" class="study-card">
+                <img src="dhyai_sthana_studies_pillow_bs_1.jpg" alt="Sthāna">
+                <h3>Sthāna</h3>
+            </a>
+            <a href="sthiti.html" class="study-card">
+                <img src="dhyai_sthiti_studies_flatlay_bs_1.jpg" alt="Sthiti">
+                <h3>Sthiti</h3>
+            </a>
+            <a href="punar.html" class="study-card">
+                <img src="dhyai_punar_studies_pillow_bc_3.jpg" alt="Punār">
+                <h3>Punār</h3>
+            </a>
+            <a href="kalash.html" class="study-card">
+                <img src="dhyai_studies_brass-vessel-front-room_01.jpg" alt="Kālāsh">
+                <h3>Kālāsh</h3>
+            </a>
+            <a href="pebble-jar.html" class="study-card">
+                <img src="dhyai_studies_pebble_js_1.png" alt="Pebble Jār Set">
+                <h3>Pebble Jār Set</h3>
+            </a>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 60px 24px; background: var(--bg-dark);">
+        <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI" style="width: 100px; margin: 0 auto 16px auto;">
+        <div style="font-family: 'Marcellus', serif; font-size: 16px; color: var(--text-ivory); margin-bottom: 8px;">ध्यै</div>
+        <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">A unit of GDB Advisors</div>
     </footer>
+
 </body>
+
 </html>
