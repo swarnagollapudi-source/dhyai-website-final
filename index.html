@@ -1,55 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHYAI | Home</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>DHYAI — To fix the mind upon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Petrona:ital,wght@0,300;1,300&family=Source+Sans+3:wght@300;400;600&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────── */
+:root {
+  --bg:       #0B0908;
+  --bg2:      #131109;
+  --warm:     #A58D6A;
+  --text:     #E5D8C4;
+  --muted:    #B8AA94;
+  --accent:   #BE8233;
+  --navh:     72px;
+  --pad:      72px;
+  --padm:     28px;
+  --serif:    'Marcellus', Georgia, serif;
+  --sans:     'Source Sans 3', sans-serif;
+  --quote:    'Petrona', Georgia, serif;
+}
+
+/* ── RESET ──────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+body{background:var(--bg);color:var(--text);font-family:var(--quote);font-size:18px;line-height:1.75;font-weight:300;}
+
+/* ── PAGE ROUTING ───────────────────────────────── */
+.page{display:none;width:100%;min-height:100vh;}
+.page.active{display:block;animation:fadeUp .8s ease forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── NAV ────────────────────────────────────────── */
+header{
+  position:fixed;top:0;left:0;width:100%;height:var(--navh);
+  background:rgba(0,0,0,0.92);
+  display:flex;align-items:center;justify-content:center;
+  z-index:1000;
+}
+.nav-links{display:flex;gap:48px;list-style:none;}
+.nav-links a{
+  font-family:var(--sans);font-size:13px;font-weight:400;
+  letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+  transition:color .3s;cursor:pointer;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--text);}
+
+/* Mobile hamburger */
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;position:absolute;right:var(--padm);}
+.burger span{width:24px;height:1px;background:var(--text);transition:.4s;}
+.burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+@media(max-width:900px){
+  header{justify-content:flex-end;padding:0 var(--padm);}
+  .burger{display:flex;}
+  .nav-links{
+    position:fixed;top:0;right:-100%;width:100%;height:100vh;
+    background:var(--bg);flex-direction:column;
+    justify-content:center;align-items:center;gap:32px;
+    transition:right .5s ease;
+  }
+  .nav-links.open{right:0;}
+  .nav-links a{font-size:15px;letter-spacing:5px;}
+}
+
+/* ── SECTION BASE ───────────────────────────────── */
+section{position:relative;width:100%;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 var(--pad);}
+@media(max-width:900px){.wrap{padding:0 var(--padm);}}
+
+/* ── REVEAL ─────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity 1.2s ease,transform 1.2s ease;}
+.reveal.show{opacity:1;transform:none;}
+
+/* ── FOOTER ─────────────────────────────────────── */
+.footer{background:var(--bg2);padding:64px var(--pad);text-align:center;}
+.footer img{width:90px;margin:0 auto 16px;}
+.footer p{font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);max-width:none;}
+
+/* ════════════════════════════════════════════════
+   HOME
+════════════════════════════════════════════════ */
+/* HERO: full natural image, no crop, centered content */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+  padding-top:var(--navh);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url('dhyai_home_hero_jali-shadow-wide_01.jpg');
+  background-size:cover;background-position:center;
+  opacity:.88;
+}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,9,8,.18) 0%,rgba(11,9,8,.5) 100%);}
+.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.hero-inner img{width:210px;}
+.hero-deva{font-family:'Noto Serif Devanagari',serif;font-size:30px;color:var(--text);letter-spacing:2px;}
+.hero-tag{font-family:var(--quote);font-size:20px;font-weight:300;color:var(--text);letter-spacing:1px;}
+
+/* HOME INTRO — text left-offset, large Petrona */
+.home-intro{
+  padding:140px var(--pad) 140px 12vw;
+  position:relative;
+}
+.home-intro-bg{
+  position:absolute;inset:0;
+  background-image:url('dhyai_home_transition_jali-shadow-vertical_01.jpg');
+  background-size:cover;background-position:center;
+  opacity:.18;
+}
+.home-intro p{
+  font-family:var(--quote);font-size:22px;font-weight:300;
+  line-height:1.9;color:var(--text);max-width:560px;
+  position:relative;z-index:2;
+}
+.home-intro p+p{margin-top:22px;}
+.home-intro em{font-style:italic;}
+
+/* PRINCIPLES — dark panel, 3 col */
+.principles{background:var(--bg2);padding:140px var(--pad);}
+.principles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:80px;max-width:1200px;margin:0 auto;}
+.ptitle{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
+.pbody{font-size:16px;color:var(--muted);line-height:1.85;}
+@media(max-width:900px){.principles-grid{grid-template-columns:1fr;gap:48px;}}
+
+/* QUOTE BAND — jaali bg, asymmetric quotes per Canva */
+.quote-band{
+  position:relative;min-height:680px;overflow:hidden;
+  display:flex;align-items:center;
+}
+.qb-bg{
+  position:absolute;inset:0;
+  background-image:url('dhyai_home_transition_jali-shadow-vertical_01.jpg');
+  background-size:cover;background-position:center;opacity:.45;
+}
+.qb-inner{position:relative;z-index:2;width:100%;padding:120px var(--pad);}
+.q-small{
+  font-family:var(--quote);font-style:italic;font-size:20px;font-weight:300;
+  line-height:1.75;color:var(--text);max-width:420px;margin-left:5vw;margin-bottom:80px;
+}
+.q-large{
+  font-family:var(--serif);font-size:36px;line-height:1.25;color:var(--text);
+  max-width:520px;margin-left:auto;margin-right:7vw;text-align:right;
+}
+@media(max-width:900px){
+  .q-small{margin-left:0;font-size:18px;}
+  .q-large{font-size:24px;margin-right:0;text-align:left;}
+}
+
+/* PREVIEW — warm panel, 5 cards 4:5 */
+.preview-panel{background:var(--warm);padding:100px var(--pad);}
+.preview-label{font-family:var(--sans);font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--bg);margin-bottom:56px;}
+.preview-row{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;max-width:1200px;}
+.pcard{display:block;cursor:pointer;}
+.pcard-img{aspect-ratio:4/5;overflow:hidden;background:rgba(0,0,0,.2);}
+.pcard-img img{width:100%;height:100%;object-fit:cover;transition:opacity .4s;}
+.pcard:hover .pcard-img img{opacity:.8;}
+.pcard-name{font-family:var(--serif);font-size:17px;color:var(--bg);margin-top:12px;}
+@media(max-width:900px){.preview-row{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:600px){.preview-row{grid-template-columns:1fr 1fr;}}
+
+/* ════════════════════════════════════════════════
+   STUDIES LANDING
+════════════════════════════════════════════════ */
+.studies-page{background:#C5B08A;color:#1A120B;}
+.studies-page .footer{background:#B8A07A;}
+.studies-page .footer p{color:#3A2A1A;}
+.studies-intro{padding:calc(var(--navh) + 80px) var(--pad) 56px;}
+.studies-intro .slabel{font-family:var(--sans);font-size:13px;letter-spacing:4px;text-transform:uppercase;color:#7A5530;margin-bottom:40px;}
+.studies-intro p{font-size:17px;line-height:1.8;color:#3A2A1A;max-width:620px;}
+.studies-intro p+p{margin-top:16px;}
+
+/* Banner: 4-col image strip */
+.studies-banner{display:grid;grid-template-columns:1fr 1fr 1fr 1.2fr;height:560px;gap:0;}
+.sbcard{position:relative;overflow:hidden;display:block;cursor:pointer;}
+.sbcard img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.sbcard-name{
+  position:absolute;bottom:20px;left:20px;
+  font-family:var(--serif);font-size:22px;color:#fff;
+  text-shadow:0 1px 6px rgba(0,0,0,.55);
+}
+/* 4th card no link */
+.sbcard.atm{cursor:default;}
+@media(max-width:900px){.studies-banner{grid-template-columns:1fr 1fr;height:auto;}.sbcard{min-height:260px;}}
+@media(max-width:600px){.studies-banner{grid-template-columns:1fr;}}
+
+/* 3 study cards below banner */
+.study-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding:64px var(--pad) 100px;}
+.sclink{display:block;cursor:pointer;}
+.sc-img{aspect-ratio:3/4;overflow:hidden;background:rgba(26,18,11,.1);margin-bottom:14px;}
+.sc-img img{width:100%;height:100%;object-fit:cover;transition:opacity .4s;}
+.sclink:hover .sc-img img{opacity:.85;}
+.sc-sub{font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#7A5530;margin-bottom:6px;}
+.sc-name{font-family:var(--serif);font-size:26px;color:#1A120B;}
+@media(max-width:900px){.study-cards{grid-template-columns:1fr;}}
+
+/* ════════════════════════════════════════════════
+   STUDY DETAIL (Sthāna / Sthiti / Punār)
+════════════════════════════════════════════════ */
+.study-page{background:#C5B08A;color:#1A120B;}
+.study-page .footer{background:#B8A07A;}
+.study-main{
+  display:grid;grid-template-columns:1fr 1.6fr;gap:80px;
+  align-items:start;
+  padding:calc(var(--navh) + 80px) var(--pad) 100px;
+}
+@media(max-width:900px){.study-main{grid-template-columns:1fr;gap:48px;padding:calc(var(--navh)+48px) var(--padm) 80px;}}
+
+.back{font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#7A5530;display:inline-block;margin-bottom:40px;cursor:pointer;}
+.back:hover{color:#1A120B;}
+.sover{font-family:var(--sans);font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#7A5530;margin-bottom:20px;}
+.stitle{font-family:var(--serif);font-size:48px;line-height:1.1;color:#1A120B;margin-bottom:8px;}
+.ssub{font-family:var(--quote);font-style:italic;font-size:18px;color:#5A3E28;margin-bottom:40px;}
+.sbody{font-size:16px;line-height:1.85;color:#3A2A1A;}
+.sbody p+p{margin-top:18px;}
+.sformats{margin-top:40px;font-size:13px;color:#3A2A1A;}
+.sformats strong{font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#7A5530;display:block;margin-bottom:6px;}
+
+/* Image cluster right side */
+.simg-cluster{display:grid;gap:12px;}
+.simg-main{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;}
+.simg-wide{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;}
+.simg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.simg-row img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
+.scap{font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5A3E28;margin-top:5px;}
+
+/* ════════════════════════════════════════════════
+   STUDIO
+════════════════════════════════════════════════ */
+.studio-main{
+  display:grid;grid-template-columns:2fr 3fr;gap:80px;align-items:start;
+  padding:calc(var(--navh)+80px) var(--pad) 20px;
+}
+@media(max-width:900px){.studio-main{grid-template-columns:1fr;gap:48px;padding:calc(var(--navh)+48px) var(--padm) 20px;}}
+.studio-label{font-family:var(--sans);font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:40px;}
+.studio-body{font-size:16px;line-height:1.9;color:var(--muted);}
+.studio-body p+p{margin-top:20px;}
+
+/* Studio image grid: left col (2 stacked), right col (tall atmosphere) */
+.studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sg-left{display:grid;gap:12px;}
+.sg-right{grid-row:1/3;}
+.sg-right img{width:100%;height:100%;object-fit:cover;object-position:center;min-height:480px;display:block;}
+.sg43{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;}
+.sg11{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;}
+@media(max-width:900px){
+  .studio-grid{grid-template-columns:1fr;}
+  .sg-right{grid-row:auto;}
+  .sg-right img{min-height:300px;height:auto;}
+}
+
+/* Brick depth image bottom right */
+.studio-brick{display:flex;justify-content:flex-end;padding:12px var(--pad) 120px;}
+.studio-brick img{width:38%;aspect-ratio:5/7;object-fit:cover;display:block;}
+@media(max-width:900px){.studio-brick{padding:12px var(--padm) 80px;}.studio-brick img{width:65%;}}
+
+/* ════════════════════════════════════════════════
+   MATERIAL
+════════════════════════════════════════════════ */
+.mat-section{padding:calc(var(--navh)+80px) var(--pad) 0;}
+@media(max-width:900px){.mat-section{padding:calc(var(--navh)+48px) var(--padm) 0;}}
+.mat-block{margin-bottom:120px;}
+.mat-label{font-family:var(--sans);font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.mat-title{font-family:var(--serif);font-size:36px;margin-bottom:40px;}
+.mat-body{font-size:16px;line-height:1.85;color:var(--muted);max-width:580px;margin-bottom:40px;}
+.mat-body p+p{margin-top:16px;}
+/* 2-col cluster: main portrait + two stacked squares */
+.mat-cluster{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;}
+.mat-main img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;}
+.mat-secondary{display:grid;gap:12px;}
+.mat-secondary img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
+.mat-divider{border:none;border-top:1px solid rgba(229,216,196,.1);margin:0 0 120px;}
+@media(max-width:900px){.mat-cluster{grid-template-columns:1fr;}}
+
+/* ════════════════════════════════════════════════
+   OBJECTS LANDING
+════════════════════════════════════════════════ */
+.objects-main{padding:calc(var(--navh)+80px) var(--pad) 120px;}
+@media(max-width:900px){.objects-main{padding:calc(var(--navh)+48px) var(--padm) 80px;}}
+.obj-label{font-family:var(--sans);font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:56px;}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.ocard{display:block;cursor:pointer;}
+.ocard-img{aspect-ratio:4/5;overflow:hidden;background:var(--bg2);margin-bottom:20px;}
+.ocard-img img{width:100%;height:100%;object-fit:cover;transition:opacity .4s;}
+.ocard:hover .ocard-img img{opacity:.8;}
+.ocard-name{font-family:var(--serif);font-size:28px;margin-bottom:8px;}
+.ocard-desc{font-size:15px;color:var(--muted);line-height:1.7;}
+@media(max-width:900px){.obj-grid{grid-template-columns:1fr;}}
+
+/* ════════════════════════════════════════════════
+   OBJECT DETAIL
+════════════════════════════════════════════════ */
+.obj-detail{
+  display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start;
+  padding:calc(var(--navh)+80px) var(--pad) 120px;
+}
+@media(max-width:900px){.obj-detail{grid-template-columns:1fr;padding:calc(var(--navh)+48px) var(--padm) 80px;}}
+.obj-over{font-family:var(--sans);font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
+.obj-title{font-family:var(--serif);font-size:48px;line-height:1.1;margin-bottom:40px;}
+.obj-body{font-size:16px;line-height:1.85;color:var(--muted);}
+.obj-body p+p{margin-top:16px;}
+.obj-imgs{display:grid;gap:12px;}
+.obj-main img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+.obj-sec img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
+
+/* ════════════════════════════════════════════════
+   ENQUIRY
+════════════════════════════════════════════════ */
+.enq-wrap{
+  position:relative;min-height:100vh;overflow:hidden;
+}
+.enq-bg{
+  position:absolute;inset:0;
+  background-image:url('dhyai-jaali-shadow-grid-warm.png');
+  background-size:cover;background-position:center;
+  opacity:.2;
+}
+.enq-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
+  padding:calc(var(--navh)+80px) var(--pad) 120px;
+}
+@media(max-width:900px){.enq-inner{grid-template-columns:1fr;padding:calc(var(--navh)+48px) var(--padm) 80px;}}
+.enq-title{font-family:var(--serif);font-size:64px;line-height:1.1;margin-bottom:32px;}
+.enq-sub{font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:32px;}
+.enq-contact p{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.6;}
+.enq-contact a{color:var(--muted);transition:color .3s;}
+.enq-contact a:hover{color:var(--accent);}
+.enq-form input,.enq-form textarea{
+  width:100%;background:transparent;border:none;
+  border-bottom:1px solid rgba(229,216,196,.25);
+  padding:14px 0;margin-bottom:24px;
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  color:var(--text);outline:none;transition:border-color .3s;
+}
+.enq-form input::placeholder,.enq-form textarea::placeholder{
+  color:var(--muted);letter-spacing:1.5px;font-size:12px;text-transform:uppercase;
+}
+.enq-form input:focus,.enq-form textarea:focus{border-bottom-color:var(--accent);}
+.enq-form textarea{height:110px;resize:none;}
+.enq-form button{
+  font-family:var(--sans);font-size:11px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--text);background:transparent;border:1px solid rgba(229,216,196,.35);
+  padding:13px 40px;cursor:pointer;transition:border-color .3s,color .3s;
+}
+.enq-form button:hover{border-color:var(--accent);color:var(--accent);}
+.comm-link{
+  display:inline-block;margin-top:80px;
+  font-family:var(--sans);font-size:13px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--text);border-bottom:1px solid rgba(229,216,196,.3);padding-bottom:4px;
+  cursor:pointer;transition:color .3s,border-color .3s;
+}
+.comm-link:hover{color:var(--accent);border-color:var(--accent);}
+@media(max-width:600px){.enq-title{font-size:40px;}}
+
+/* ════════════════════════════════════════════════
+   COMMISSIONS
+════════════════════════════════════════════════ */
+.comm-wrap{position:relative;min-height:100vh;overflow:hidden;}
+.comm-bg{
+  position:absolute;inset:0;
+  background-image:url('dhyai-jaali-brick-depth.png');
+  background-size:cover;background-position:center;opacity:.16;
+}
+.comm-inner{
+  position:relative;z-index:1;
+  padding:calc(var(--navh)+80px) var(--pad) 120px;
+  max-width:1200px;
+}
+@media(max-width:900px){.comm-inner{padding:calc(var(--navh)+48px) var(--padm) 80px;}}
+.comm-title{font-family:var(--serif);font-size:64px;margin-bottom:40px;}
+.comm-lead{font-size:16px;line-height:1.85;color:var(--muted);max-width:600px;margin-bottom:80px;}
+.comm-lead p+p{margin-top:16px;}
+.comm-sections{display:grid;grid-template-columns:1fr 1fr;gap:56px 80px;max-width:880px;margin-bottom:100px;}
+.cs-title{font-family:var(--sans);font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.cs-body{font-size:15px;color:var(--muted);line-height:1.8;}
+@media(max-width:900px){.comm-sections{grid-template-columns:1fr;}}
+.proc-label{font-family:var(--sans);font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;}
+.proc-flow{max-width:360px;}
+.proc-step{
+  font-family:var(--quote);font-size:19px;font-weight:300;color:var(--text);
+  padding:18px 0;border-top:1px solid rgba(229,216,196,.15);
+}
+.proc-step:last-child{border-bottom:1px solid rgba(229,216,196,.15);}
+.write-link{
+  display:inline-block;margin-top:60px;
+  font-family:var(--sans);font-size:13px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--muted);border-bottom:1px solid rgba(229,216,196,.3);
+  padding-bottom:4px;cursor:pointer;transition:color .3s,border-color .3s;
+}
+.write-link:hover{color:var(--accent);border-color:var(--accent);}
+@media(max-width:600px){.comm-title{font-size:40px;}}
+</style>
 </head>
-<body class="dark">
-    <nav>
-        <a href="index.html">HOME</a>
-        <a href="studio.html">STUDIO</a>
-        <a href="material.html">MATERIAL</a>
-        <a href="studies.html">STUDIES</a>
-        <a href="objects.html">OBJECTS</a>
-        <a href="commissions.html">COMMISSIONS</a>
-        <a href="enquiry.html">ENQUIRY</a>
-    </nav>
-    <section class="hero-full">
-        <img src="assets/images/dhyai_home_hero_jali-shadow-wide_01.jpg" class="hero-bg" alt="Jali Shadow">
-        <div class="bg-overlay"></div>
-        <div class="container" style="text-align: center; z-index: 2;">
-            <img src="assets/images/dhyai_brand_logo_gold-black_01.png" style="width: 180px; margin: 0 auto 20px auto;">
-            <h1 style="font-size: 26px;">ध्यै</h1>
-            <p>To fix the mind upon.</p>
-        </div>
-    </section>
-    <section class="container" style="padding: 120px 80px;">
-        <p>A stone from a riverbed sits on the shelf for years.</p>
-        <p>Objects that settle into life slowly are,</p>
-        <p>Time, embodied in material.<br>Objects meant to live with.</p>
-    </section>
-    <section class="container grid-3">
-        <div><h3>Object gravity</h3><p>A piece belongs without justification. It carries its own weight in a room.</p></div>
-        <div><h3>Objects through time</h3><p>The object moves across homes and decades without becoming obsolete.</p></div>
-        <div><h3>Object coherence</h3><p>Material, use, ageing, and repetition resolve into quiet certainty.</p></div>
-    </section>
-    <section class="container" style="text-align: center; padding: 120px 0;">
-        <img src="assets/images/dhyai_home_transition_jali-shadow-vertical_01.jpg" style="width:100%; height:700px; object-fit:cover; filter:blur(1.5px) brightness(0.8) saturate(0.9); margin-bottom: 40px;">
-        <p style="font-family: 'Cormorant Garamond'; font-size: 32px;">“There is an experience. Objects happen inside it.”</p>
-        <p style="font-family: 'Cormorant Garamond'; font-size: 32px;">“The object should feel like it belongs to time.”</p>
-    </section>
-    <section class="container" style="background:#A98E68; color: var(--text-deep);">
-        <h2 style="margin-bottom: 60px;">STUDIES & OBJECTS</h2>
-        <div class="grid-5">
-            <a href="sthana.html"><img src="assets/images/dhyai_sthana_studies_flatlay_2.jpg"><p>Sthāna</p></a>
-            <a href="sthiti.html"><img src="assets/images/dhyai_sthiti_studies_flatlay_2.jpg"><p>Sthiti</p></a>
-            <a href="punar.html"><img src="assets/images/dhyai_punar_studies_flatlay_bc_3.jpg"><p>Punar</p></a>
-            <a href="kalash.html"><img src="assets/images/dhyai-studies-brass-kalash-lineup.png"><p>Kālash</p></a>
-            <a href="pebble-jar.html"><img src="assets/images/dhyai_studies_pebble_jb_3.jpg"><p>Pebble Jar Set</p></a>
-        </div>
-    </section>
-    <footer><div class="container"><img src="assets/images/dhyai_brand_logo_gold-black_01.png" style="width: 100px; margin: 0 auto 12px auto;"><p>A unit of GDB Advisors</p></div></footer>
-</body>
-</html>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────── -->
+<header>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="navlinks">
+    <li><a onclick="go('home')" id="nav-home" class="active">HOME</a></li>
+    <li><a onclick="go('studio')" id="nav-studio">STUDIO</a></li>
+   
