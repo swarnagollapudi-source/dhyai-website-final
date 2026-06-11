@@ -1,88 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHYAI | To fix the mind upon</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">HOME</a></li>
-                <li><a href="studio.html">STUDIO</a></li>
-                <li><a href="material.html">MATERIAL</a></li>
-                <li><a href="studies.html">STUDIES</a></li>
-                <li><a href="objects.html">OBJECTS</a></li>
-                <li><a href="commissions.html">COMMISSIONS</a></li>
-                <li><a href="enquiry.html">ENQUIRY</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="dark">
+    <nav>
+        <a onclick="show('home')">HOME</a>
+        <a onclick="show('studio')">STUDIO</a>
+        <a onclick="show('material')">MATERIAL</a>
+        <a onclick="show('studies')">STUDIES</a>
+        <a onclick="show('objects')">OBJECTS</a>
+        <a onclick="show('enquiry')">ENQUIRY</a>
+    </nav>
 
-    <section class="hero">
-        <img src="dhyai_brand_logo_gold-black_01.png" alt="DHYAI Logo" class="logo">
-        <h1 style="margin-bottom: 10px;">ध्यै</h1>
-        <p>To fix the mind upon</p>
-    </section>
+    <div id="home" class="page active">
+        <section style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="dhyai_brand_logo_gold-black_01.png" style="width: 180px;">
+            <h1>ध्यै</h1>
+            <p>To fix the mind upon.</p>
+        </section>
+        <section class="container">
+            <p>A stone from a riverbed sits on the shelf for years. Time, embodied in material. Objects meant to live with.</p>
+        </section>
+    </div>
 
-    <section class="intro-section">
-        <p>A stone from a riverbed sits on the shelf for years.<br><br>
-        Objects that settle into life slowly are,<br><br>
-        Time, embodied in material.<br>
-        Objects meant to live with.</p>
-    </section>
+    <div id="studio" class="page">
+        <section class="container">
+            <h1>The Studio</h1>
+            <p>DHYAI is a material and surface design practice based in Bengaluru.</p>
+            <img src="dhyai_studio_stacking_atmosphere-6.jpg">
+        </section>
+    </div>
 
-    <section class="principles-section">
-        <div class="principles-grid">
-            <div>
-                <h2>Object gravity</h2>
-                <p>A piece belongs without justification. It carries its own weight in a room.</p>
+    <div id="studies" class="page" style="background: #D1C2A0; color: #2A1E18;">
+        <section class="container">
+            <h1>Studies</h1>
+            <div class="grid-2">
+                <img src="dhyai_sthana_studies_pillow_bs_1.jpg">
+                <img src="dhyai_sthiti_studies_flatlay_bs_1.jpg">
             </div>
-            <div>
-                <h2>Objects through time</h2>
-                <p>The object moves across homes and decades without becoming obsolete.</p>
-            </div>
-            <div>
-                <h2>Object coherence</h2>
-                <p>Material, use, ageing, and repetition resolve into quiet certainty.</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <section class="quotes-section">
-        <div class="quote q1">"There is an experience. Objects happen inside it."</div>
-        <div class="quote q2">"Nothing seeks your attention. And then you notice something — not because it announces itself, but because it exists and you arrived at it."</div>
-    </section>
-
-    <section class="preview-section">
-        <div class="preview-container">
-            <h2 style="color: #D8C7A6;">STUDIES & OBJECTS</h2>
-            <div class="cards-row">
-                <a href="sthana.html" class="preview-card">
-                    <img src="dhyai_sthana_studies_flatlay_bc_1.jpg" alt="Sthana">
-                    <p>Sthāna</p>
-                </a>
-                <a href="sthiti.html" class="preview-card">
-                    <img src="dhyai_sthiti_studies_flatlay_bc_2.jpg" alt="Sthiti">
-                    <p>Sthiti</p>
-                </a>
-                <a href="punar.html" class="preview-card">
-                    <img src="dhyai_punar_studies_flatlay_bc_2.jpg" alt="Punar">
-                    <p>Punār</p>
-                </a>
-                <a href="kalash.html" class="preview-card">
-                    <img src="dhyai_studies_brass-vessel-front-room_01.jpg" alt="Kalash">
-                    <p>Kālāsh</p>
-                </a>
-                <a href="pebble-jar.html" class="preview-card">
-                    <img src="dhyai_studies_pebble_js_3.png" alt="Pebble Jar Set">
-                    <p>Pebble Jar Set</p>
-                </a>
-            </div>
-        </div>
-    </section>
+    <script>
+        function show(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.body.className = (id === 'studies' || id === 'enquiry') ? 'light' : 'dark';
+        }
+    </script>
 </body>
-</h
-    tml>
+</html>
