@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Source+Sans+3:wght@300&display=swap');
 
-:root {
-    --bg-dark: #100907; --bg-warm: #17100C; --bg-light: #D8C8A9;
-    --text-ivory: #E8D8BD; --text-muted: #BBA98C; --gold: #BE8233; --text-deep: #2A1E18;
-}
-
-body { margin: 0; font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: 18px; line-height: 1.65; }
-body.dark { background-color: var(--bg-dark); color: var(--text-muted); }
+:root { --bg-dark: #100907; --bg-warm: #17100C; --bg-light: #D1C2A0; --text-bone: #E8D8BD; --text-deep: #2A1E18; }
+body { margin: 0; font-family: 'Source Sans 3', sans-serif; font-size: 18px; line-height: 1.65; }
+body.dark { background-color: var(--bg-dark); color: var(--text-bone); }
 body.light { background-color: var(--bg-light); color: var(--text-deep); }
 
+/* Navigation */
 nav { height: 68px; display: flex; justify-content: center; align-items: center; gap: 34px; font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase; position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(15, 10, 8, 0.88); backdrop-filter: blur(8px); }
-nav a { color: var(--text-ivory); text-decoration: none; }
+nav a { color: var(--text-bone); text-decoration: none; }
 body.light nav { background: rgba(216, 200, 169, 0.9); color: var(--text-deep); }
 body.light nav a { color: var(--text-deep); }
 
+/* Layout */
 .container { max-width: 1240px; margin: 0 auto; padding: 110px 80px; }
-h1 { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 400; color: var(--text-bone); margin-bottom: 24px; }
-body.light h1 { color: var(--text-deep); }
+h1 { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 400; margin-bottom: 24px; }
+section { padding: 110px 0; }
 img { width: 100%; height: auto; display: block; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-@media (max-width: 768px) { .container { padding: 64px 22px; } .grid-2 { grid-template-columns: 1fr; } h1 { font-size: 38px; } }
+.page { display: none; }
+.page.active { display: block;
+             }
